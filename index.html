@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  <script src="script.js" type="module" defer></script>
+  <script src="./data/InitialCheckboxData.js" type="module" ></script>
+  <script src="./data/TextData.js" type="module" ></script>
+  <script src="./tools/utils.js" defer ></script>
+  <link rel="stylesheet" href="styles.css">
+  <title>Note Builder Tools</title>
+</head>
+
+<body>
+
+  <header class="nav-header">
+    <nav>
+      <button id="note-nav-button" onClick="showHideTools(this.id)" class="nav-button">
+        Note Builder
+      </button>
+      <button id="tools-nav-button" onClick="showHideTools(this.id)" class="nav-button">
+        Tools
+      </button>
+    </nav>
+  </header>
+
+  <div class="notes-main-section">
+    <!-- area for case text field and issue/troubleshooting/recommended next steps -->
+    <main class="template-builder-main">
+
+      <div class="dropdown-div">
+        <h2> Issues </h2>
+        <img z-index="1" class="dropdown-button" data-dropdown="issue-checkboxes" src="./images/chevron_up.png">
+      </div>
+
+      <div id="issue-checkboxes" class="checkbox-div">
+        <div>
+          <input type="checkbox" id="display-disconnect" name="display-disconnect" value="Display Disconnected From OBC" data-category="Issues">
+          <label for="display-disconnect"> Display disconnect </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="otap-pdr" name="otap-pdr" value="OTAP/PDR Request to Unit" data-category="Issues">
+          <label for="otap-pdr"> OTAP/PDR </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="no-gps" name="no-gps" value="GPS is not updating" data-category="Issues">
+          <label for="no-gps"> No GPS </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="no-ecm" name="no-ecm" value="Unit is not getting engine data" data-category="Issues">
+          <label for="no-ecm"> No ECM </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="log-incorrect" name="log-incorrect" value="Log is incorrect for driver" data-category="Issues">
+          <label for="log-incorrect"> Log Is Incorrect </label><br>
+        </div>
+      </div>
+
+      <div class="dropdown-div">
+        <h2> Troubleshooting </h2>
+        <img z-index="1" class="dropdown-button" data-dropdown="troubleshooting-checkboxes" src="./images/chevron_up.png">
+      </div>
+
+      <div id="troubleshooting-checkboxes" class="checkbox-div">
+        <div>
+          <input type="checkbox" id="reboot-display" name="reboot-display" value="Rebooted display" data-category="Troubleshooting">
+          <label for="reboot-display"> Reboot Display </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="cell-active" name="cell-active" value="Cell is active in Simetric" data-category="Troubleshooting">
+          <label for="cell-active"> Cell Active </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="reinstall" name="reinstall" value="Ran a reinstall on the display" data-category="Troubleshooting">
+          <label for="reinstall"> Re-install </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="cycle-power" name="cycle-power" value="Sent cycle power to OBC" data-category="Troubleshooting">
+          <label for="cycle-power"> Cycle Power </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="test-message" name="test-message" value="Sent test message to unit" data-category="Troubleshooting">
+          <label for="test-message"> Test Message </label><br>
+        </div>
+      </div>
+
+      <div class="dropdown-div">
+        <h2>Recommended Next Steps </h2>
+        <img z-index="1" class="dropdown-button" data-dropdown="recommended-checkboxes" src="./images/chevron_up.png">
+      </div>
+
+      <div id="recommended-checkboxes" class="checkbox-div">   
+        <div>
+          <input type="checkbox" id="pull-power" name="pull-power" value="Pull Power to OBC" data-category="Recommended">
+          <label for="pull-power"> Pull power to OBC </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="check-cabling" name="check-cabling" value="Check wiring to OBC for proper voltage and ground. Ensure cabling is not damaged or loose." data-category="Recommended">
+          <label for="check-cabling"> Check cabling </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="contact-company-log-edit" name="contact-company-log-edit" value="Contact Company for log edits or if unsure about log times" data-category="Recommended">
+          <label for="contact-company-log-edit"> Contact Company: Log Edit </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="swap-obc" name="swap-obc" value="Swap OBC with known working OBC" data-category="Recommended">
+          <label for="swap-obc"> Swap OBC </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="swap-display" name="swap-display" value="Swap display with known working display" data-category="Recommended">
+          <label for="swap-display"> Swap Display </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="reset-password" name="reset-password" value="Contact company for password reset" data-category="Recommended">
+          <label for="reset-password"> Password Reset </label><br>
+        </div>     
+      </div>
+    </main>
+
+    <section class="text-field-section">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="copy-icon" id="copy-icon">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
+      </svg>
+
+      <label for="template-dropdown">Templates: </label>
+
+      <select name="template-dropdown" id="template-dropdown">
+        <option value="display-disconnect-template">Display Disconnect</option>
+        <option value="no-cell-template">No Cell</option>
+        <option value="otap-template"> OTAP </option>
+        <option value="log-edit-template">Log Edit</option>
+      </select>
+      
+      <h2> Case Notes </h2>
+      <textarea maxlength="2000" rows="15" cols="80" id="case-notes-text-field"></textarea>
+    </section>
+  </div>
+
+    <!-- add a copy button for this -->
+    <section class="tools">
+        <h2> Comma Insertion </h2>
+        <label for="comma-insertion-input-text"> Enter DSN's </label><br>
+        <textarea id="comma-insertion-input-text" rows="15" cols="60" name="comma-insertion-input-text" class="comma-insertion-input-text"></textarea><br>
+        
+        <button id="comma-insertion-button"> Insert Commas and Filter DSN </button><br>
+
+        <textarea id="comma-insertion-output-area" rows="15" cols="80" class="comma-insertion-output-area"></textarea>
+    </section>
+
+</body>
+</html>
