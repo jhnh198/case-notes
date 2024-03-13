@@ -2,7 +2,6 @@ import { TextData } from "./data/TextData.js";
 import { StandardTemplates } from "./standard-templates/standard-templates.js";
 import { InitialCheckboxData } from "./data/InitialCheckboxData.js";
 
-// todo: add an element builder to handle future additions, ie make a function with a loop that builds the checkboxes
 // grabs from initial checkbox data to populate all categories and checkboxes 
 function checkboxPopulation(){}
 
@@ -72,9 +71,3 @@ commaInsertionButton.addEventListener('click', () =>{
 
   commaInsertionOutputArea.value = commaInsertionInputText.value.match(filterReg).join();
 })
-
-//test string: 7238327 12323452 123123 24522312 5231233 7238495 11123923
-
-/* InitialCheckboxData.forEach((option, index) => {
-  console.log(option.id)
-}) */
