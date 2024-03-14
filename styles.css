@@ -89,3 +89,7 @@ label{
 .tools > *{
   margin-bottom: 1rem;
 }
+
+.template-dropdown-label{
+  margin-left: 1rem;
+}
