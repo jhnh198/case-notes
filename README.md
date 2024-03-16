@@ -1,5 +1,4 @@
-# case-notes
-Case Note Builder for Reuse and Quick Copy
+# Case Note Builder for Reuse and Quick Copy
 
 Front-end JS app
 
