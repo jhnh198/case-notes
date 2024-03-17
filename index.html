@@ -52,8 +52,100 @@
           <label for="no-ecm"> No ECM </label><br>
         </div>
         <div>
+          <input type="checkbox" id="no-cell" name="no-cell" value="OBC Is Not Updating Logs or GPS" data-category="Issues">
+          <label for="no-cell"> No Cell </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="no-wifi" name="no-wifi" value="Wifi disconnect, display cannot connect to OBC" data-category="Issues">
+          <label for="no-wifi"> No Wifi </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="no-power" name="no-power" value="No power to OBC" data-category="Issues">
+          <label for="no-power"> No Power </label><br>
+        </div>
+        <div>
           <input type="checkbox" id="log-incorrect" name="log-incorrect" value="Log is incorrect for driver" data-category="Issues">
           <label for="log-incorrect"> Log Is Incorrect </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="unable-reach-host" name="unable-reach-host" value="Unable to reach host" data-category="Issues">
+          <label for="unable-reach-host"> Unable to reach host </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="dsn-pending-new" name="dsn-pending-new" value="Add New DSN To Pending / OTAP OBC to Current" data-category="Issues">
+          <label for="dsn-pending-new"> New DSN To Pending </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="dsn-pending-active" name="dsn-pending-active" value="DSN: to Pending from active truck" data-category="Issues">
+          <label for="dsn-pending-active"> DSN To Pending Active </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="dsn-sister-cid-transfer" name="dsn-sister-cid-transfer" value="DSN Transfer to sister CID" data-category="Issues">
+          <label for="dsn-sister-cid-transfer"> DSN: Sister CID Transfer </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="login-invalid-credentials" name="login-invalid-credentials" value="" data-category="Issues">
+          <label for="login-invalid-credentials"> Login: Invalid Credentials </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="login-aobrd" name="login-aobrd" value="AOBRD Login Screen" data-category="Issues">
+          <label for="login-aobrd"> Login: AOBRD Screen </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="login-old-version" name="login-old-version" value="Unable to login due to old version that is incompatible with seconds precision." data-category="Issues">
+          <label for="login-old-version"> Login: Seconds Precision </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="login-hang-requesting-logs" name="login-hang-requesting-logs" value="Device Hangs On Requesting Logs Until Device Provides Option To Stop" data-category="Issues">
+          <label for="login-hang-requesting-logs"> Login Hangs on Requesting Logs </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="logout-invalid-password" name="logout-invalid-password" value="Driver attempted to log out and is being prompted for driver password" data-category="Issues">
+          <label for="logout-invalid-password"> Logout: Invalid Password </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="installation-assistance" name="installation-assistance" value="Assist user with paring display to OBC" data-category="Issues">
+          <label for="installation-assistance"> Installation Assistance </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="installation-howto" name="installation-howto" value="How To Pair Display to OBC" data-category="Issues">
+          <label for="installation-howto"> Installation: How-To </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="instinct-change-vid" name="instinct-change-vid" value="Change vehicle number with Instinct" data-category="Issues">
+          <label for="instinct-change-vid"> Instinct: Change VID </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="smd-trips-present" name="smd-trips-present" value="SMD: Trips Present After Completion" data-category="Issues">
+          <label for="smd-trips-present"> SMD: Trips Still Present </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="smd-failed-launch-troubleshooting" name="smd-failed-launch-troubleshooting" value="SMD App is not opening normally" data-category="Issues">
+          <label for="smd-failed-launch-troubleshooting"> SMD: Failed To Launch </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="dvr-pairing-troubleshooting" name="dvr-pairing-troubleshooting" value="DVR Pairing Troubleshooting" data-category="Issues">
+          <label for="dvr-pairing-troubleshooting"> DVR Pairing </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="drivewyze-activation" name="drivewyze-activation" value="Drivewyze Activation" data-category="Issues">
+          <label for="drivewyze-activation"> Drivewyze Activation </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="log-incorrect-time" name="log-incorrect-time" value="" data-category="Issues">
+          <label for="log-incorrect-time"> Logs: Incorrect Time </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="log-edit-correction" name="log-edit-correction" value="" data-category="Issues">
+          <label for="log-edit"> Log Edit: Correction </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="log-auto-drive-edit" name="log-auto-drive-edit" value="Logs show driver on drive and the driver says that the drive time is incorrect. " data-category="Issues">
+          <label for="log-auto-drive-edit"> Log Edit: Auto Drive Time </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="log-no-time" name="log-no-time" value="No drive time after coming from break" data-category="Issues">
+          <label for="log-no-time"> Log: No Time </label><br>
         </div>
       </div>
 
@@ -82,6 +174,10 @@
         <div>
           <input type="checkbox" id="test-message" name="test-message" value="Sent test message to unit" data-category="Troubleshooting">
           <label for="test-message"> Test Message </label><br>
+        </div>
+        <div>
+          <input type="checkbox" id="truck-running" name="truck-running" value="Truck is running and outside" data-category="Troubleshooting">
+          <label for="truck-running"> Truck Running </label><br>
         </div>
       </div>
 
@@ -126,15 +222,56 @@
       <label class="template-dropdown-label" for="template-dropdown">Templates: </label>
 
       <select name="template-dropdown" id="template-dropdown">
-        <option value="display-disconnect-template">Display Disconnect</option>
-        <option value="no-cell-template">No Cell</option>
+        <option disabled>-- Login Issues --</option>
+        <option value="unable-to-reach-host-template">Unable to Reach Host</option>
+        <option value="login-hang-requesting-logs-template">Login Hangs on Requesting Logs</option>
+        <option value="login-invalid-credentials-template">Login: Invalid Credentials</option>
+        <option value="logout-invalid-password-template">Logout Password Prompt</option>
+        <option value="login-old-version-template">Login: Seconds Precision</option>
+        <option value="login-aobrd-template">Login: AOBRD Login</option>       
+        
+        <option disabled></option>
+        <option disabled>-- Installation --</option>
+        <option value="dsn-pending-new-template">New DSN To Pending</option>
+        <option value="dsn-pending-active-template">Active DSN To Pending</option>
         <option value="otap-template"> OTAP </option>
+        <option value="dsn-sister-cid-transfer-template">DSN Move to Sister CID</option>
+        <option value="installation-assistance-template">Installation Assistance</option>
+        <option value="dvr-pairing-troubleshooting-template">DVR Pairing</option>
+        <option value="instinct-change-vid-template">Instinct: Change VID</option>
+        <option value="installation-howto-template">Installation: How To</option>
+
+        <option disabled></option>
+        <option disabled>-- Requirements --</option>
+        <option value="display-disconnect-template">Display Disconnect</option>
+        <option value="no-cell-troubleshooting-template">No Cell</option>
+        <option value="no-ecm-troubleshooting-template">No ECM</option>
+        <option value="no-power-troubleshooting-template">No Power</option>
+        <option value="no-gps-troubleshooting-template">No GPS</option>
+        <option value="no-wifi-troubleshooting-template">No Wifi</option>
+
+        <option disabled></option>
+        <option disabled>-- Log Issues --</option>
         <option value="log-edit-template">Log Edit</option>
+        <option value="log-no-time-template">Log: No Time</option>
+        <option value="log-auto-drive-edit-template">Log Auto Drive Edit</option>
+        <option value="log-incorrect-time-template">Log Incorrect Time</option>
+
+        <option disabled></option>
+        <option disabled>-- SMD Issues --</option>
+        <option value="smd-failed-launch-troubleshooting-template">SMD Failed to Launch</option>
+        <option value="smd-trips-present-template">SMD Trips Still Present</option>
+
+        <option disabled></option>
+        <option disabled>-- E-mail Templates --</option>
         <option value="blank-email-template">Blank E-mail</option>
         <option value="case-notes-email-template">Case Notes E-mail</option>
+
+        <option disabled></option>
+        <option disabled>-- Escalation Templates --</option>
         <option value="csm-template">CSM Template</option>
         <option value="tsa-template">TSA Template</option>
-        <option value="drivewyze-template">Drivewyze Activation Template</option>
+        <option value="drivewyze-activation-template">Drivewyze Activation Template</option>
       </select>
       
       <h2> Case Notes </h2>

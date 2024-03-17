@@ -21,41 +21,36 @@ copyButton.addEventListener("click", () => {
 
 function populateCaseNotes(){
    Object.keys(TextData).forEach(category => {
-    console.log(TextData[category])
-
     if(TextData[category].length !== 0){
       caseNotesTextField.value += ` ${category}: \n`
       TextData[category].forEach( element => {
         caseNotesTextField.value += `\t\u2022 ${element} \n`;
-        console.log(TextData[category])
       })
       caseNotesTextField.value += `\n`
     }
    })
-}
+};
 
 const templateDropdown = document.querySelector('#template-dropdown');
 templateDropdown.addEventListener("change", (e) => {
-  console.log(e)
   loadCaseNotesTemplate(e.target.value);
-})
+});
 
 function loadCaseNotesTemplate(selectedTemplateValue){
-  console.log(selectedTemplateValue)
   const template = StandardTemplates.find((element) => element.id === selectedTemplateValue)
   caseNotesTextField.value = template.templateText;
-}
+};
 
 
 //adds and removes checkbox values when checked or unchecked
 checkboxes.forEach(checkbox => {
   checkbox.addEventListener('click', (e) =>{
     if(e.target.checked){
-      console.log(TextData[e.target.getAttribute('data-category')].push(e.target.value))
+      TextData[e.target.getAttribute('data-category')].push(e.target.value)
     } else{
       let index = TextData[e.target.getAttribute('data-category')].indexOf(e.target.value)
       TextData[e.target.getAttribute('data-category')].splice(index,1);
-      console.log(TextData[e.target.getAttribute('data-category')])
+      //console.log(TextData[e.target.getAttribute('data-category')])
     }
     caseNotesTextField.value = "";
     populateCaseNotes()
@@ -70,4 +65,4 @@ commaInsertionButton.addEventListener('click', () =>{
   let filterReg = /(6|7|11|12|20|23)\w{6}/g
 
   commaInsertionOutputArea.value = commaInsertionInputText.value.match(filterReg).join();
-})
+});
