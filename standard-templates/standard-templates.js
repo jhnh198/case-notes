@@ -135,9 +135,7 @@ export const StandardTemplates = [
   {
     id: "logout-invalid-password-template",
     templateText: 
-      `Symptom/Issue: Driver attempted to log out and is being prompted for
-      driver password. When the driver enters the correct password, the display returns a message saying the password is
-      incorrect and the driver is unable to continue or get past this screen.
+      `Symptom/Issue: Driver attempted to log out and is being prompted for driver password. When the driver enters the correct password, the display returns a message saying the password is incorrect and the driver is unable to continue or get past this screen.
       
       Troubleshooting Completed/Solution:
       • Confirmed that the screen asking for the password has a 'select
@@ -286,8 +284,8 @@ export const StandardTemplates = [
       Recommended Next Steps:
       • Wait 1 hour for OTAP to complete
       • Contact support if update was not successful or for additional
-      OTAPsAdditional Notes: 
-      • For OTAPs to more than 5 units, escalate to FM SOTA
+      OTAPs  
+      • For OTAPs to more than 5 units, escalate to SOTA
       `,
   },
   {
