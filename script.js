@@ -62,7 +62,9 @@ let commaInsertionOutputArea = document.querySelector("#comma-insertion-output-a
 let commaInsertionButton = document.querySelector("#comma-insertion-button");
 
 commaInsertionButton.addEventListener('click', () =>{
+  //to clear commas that are already present and avoid adding additional
+  let commaFilter = commaInsertionInputText.value.replace(',', ' ');
   let filterReg = /(6|7|11|12|20|23)\d{6}/g
 
-  commaInsertionOutputArea.value = commaInsertionInputText.value.match(filterReg).join();
+  commaInsertionOutputArea.value = commaFilter.value.match(filterReg).join();
 });
