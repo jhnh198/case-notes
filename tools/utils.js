@@ -16,18 +16,17 @@ const dropdownButton = document.querySelectorAll(".dropdown-button");
 dropdownButton.forEach(button => {
   button.addEventListener('click', (e) => {
     dropdownToggle(e);
-    
   })
 })
 
+//todo: minor bug where the display is not captured the first click but works after
 function dropdownToggle(e){
-  console.log(e.target.getAttribute('data-dropdown'))
   const element = document.querySelector(`#${e.target.getAttribute('data-dropdown')}`);
-  if(element.style.display === "none"){
-    e.target.src = "./images/chevron_up.png"
-    element.style.display = "flex";
-  } else {
+  if(element.style.display === "flex"){
     element.style.display = "none";
     e.target.src = "./images/chevron_down.png"
+  } else {
+    e.target.src = "./images/chevron_up.png"
+    element.style.display = "flex";
   } 
 }

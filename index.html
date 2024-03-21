@@ -29,14 +29,12 @@
     <!-- area for case text field and issue/troubleshooting/recommended next steps -->
     <main class="template-builder-main">
 
-      <!-- todo: make all dropdown areas closed by default-->
-      <!-- todo: styling for input fields-->
       <div class="dropdown-div">
         <h2> Info </h2>
         <img z-index="1" class="dropdown-button" data-dropdown="info-fields-div" src="./images/chevron_up.png">
       </div>
-      <div id="info-fields-div" class="info-fields-div"> 
 
+      <div id="info-fields-div" class="info-fields-div">
         <div>
           <label for="first-name-input"> First Name: </label>
           <input type="text" id="first-name-input" name="first-name-input" data-category="info-fields">  
@@ -62,12 +60,10 @@
           <input type="text" id="phone-number-input" name="phone-number-input" data-category="info-fields">
         </div>
 
-
-
       </div>
       <div class="dropdown-div">
         <h2> Issues </h2>
-        <img z-index="1" class="dropdown-button" data-dropdown="issue-checkboxes" src="./images/chevron_up.png">
+        <img z-index="1" class="dropdown-button" data-dropdown="issue-checkboxes" src="./images/chevron_down.png">
       </div>
 
       <div id="issue-checkboxes" class="checkbox-div">
@@ -187,7 +183,7 @@
 
       <div class="dropdown-div">
         <h2> Troubleshooting </h2>
-        <img z-index="1" class="dropdown-button" data-dropdown="troubleshooting-checkboxes" src="./images/chevron_up.png">
+        <img z-index="1" class="dropdown-button" data-dropdown="troubleshooting-checkboxes" src="./images/chevron_down.png">
       </div>
 
       <div id="troubleshooting-checkboxes" class="checkbox-div">
@@ -307,13 +303,13 @@
 
       <div class="dropdown-div">
         <h2>Recommended Next Steps </h2>
-        <img z-index="1" class="dropdown-button" data-dropdown="recommended-checkboxes" src="./images/chevron_up.png">
+        <img z-index="1" class="dropdown-button" data-dropdown="recommended-checkboxes" src="./images/chevron_down.png">
       </div>
 
       <div id="recommended-checkboxes" class="checkbox-div">   
         <div>
-          <input type="checkbox" id="pull-power" name="pull-power" value="Pull Power to OBC" data-category="Recommended">
-          <label for="pull-power"> Pull power to OBC </label><br>
+          <input type="checkbox" id="recommend-pull-power" name="recommend-pull-power" value="Pull Power to OBC" data-category="Recommended">
+          <label for="recommend-pull-power"> Pull power to OBC </label><br>
         </div>
         <div>
           <input type="checkbox" id="check-cabling" name="check-cabling" value="Check wiring to OBC for proper voltage and ground. Ensure cabling is not damaged or loose." data-category="Recommended">

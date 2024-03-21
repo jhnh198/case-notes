@@ -45,26 +45,38 @@ nav{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  max-width: 600px;
+  max-width: 700px;
   
 }
 
 .info-fields-div{
-  display: flex;
-  flex-direction: column;
-  max-width: 600px;
+  display: none;
+  max-width: 700px;
   flex-wrap: wrap;
+  flex-direction: row;
+  align-content: stretch;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
 .info-fields-div > div{
-  margin: .5rem;
+  display: flex;
+  margin: 0.5rem;
+  align-items: baseline;
+  align-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.info-fields-div > div > label{
+  padding-bottom: 1rem;
 }
 
 .checkbox-div{
-  display: flex;
+  display: none;
   flex-direction: row;
   flex-wrap: wrap;
-  max-width: 600px;
+  max-width: 700px;
 }
 
 h2{
