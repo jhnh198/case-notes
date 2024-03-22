@@ -458,7 +458,7 @@ export const StandardTemplates = [
     templateText: 
       `Hello {{{Recipient.FirstName}}}, 
 
-      Thank you for contacting Trimble Transportation Support. I have received your email and I would be happy to help you. 
+      Thank you for contacting Trimble Transportation Support.  Please see below for notes on case {{{Case.CaseNumber}}}:  
            
       Please reply to this email with any problem you may have. If you would like to speak with a representative you may contact 888-346-3486, select option 1, and reference case number {{{Case.CaseNumber}}}. To search for answers to your Trimble Transportation questions, please visit MyTransportation at https://crmtransportation.force.com/service.
       `,
@@ -468,7 +468,7 @@ export const StandardTemplates = [
     templateText: 
       `Hello {{{Recipient.FirstName}}},
  
-      Thank you for contacting Trimble Transportation Support. Please see below for notes on case {{{Case.CaseNumber}}}: 
+      Thank you for contacting Trimble Transportation Support. I have received your email and I would be happy to help you.
       
       Please reply to this email with any problem you may have. If you would like to speak with a representative you may contact 888-346-3486, select option 1, and reference case number {{{Case.CaseNumber}}}. To search for answers to your Trimble Transportation questions, please visit MyTransportation at https://crmtransportation.force.com/service.
       `,
