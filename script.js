@@ -10,6 +10,13 @@ const copyButton = document.querySelector('#copy-icon');
 
 let caseNotesTextField = document.querySelector("#case-notes-text-field");
 
+//get user info
+const firstNameInput = document.querySelector("#first-name-input");
+const lastNameInput = document.querySelector("#last-name-input");
+const companyIdInput = document.querySelector("#company-id-input");
+const truckNumberInput = document.querySelector("#truck-number-input");
+const phoneNumberInput = document.querySelector("#phone-number-input");
+
 //todo: add popup that goes away after copy to show content copied
 copyButton.addEventListener("click", () => {
   navigator.clipboard.writeText(caseNotesTextField.value).then(() => {
@@ -17,7 +24,14 @@ copyButton.addEventListener("click", () => {
   },() => {
     console.error('Failed to copy');
   });
-})
+});
+
+function showCopyDiv(){
+  const copyDiv = document.createElement('div');
+  copyDiv.textContent = "Text field notes copied to clipboard"
+  copyDiv.classList.add("fadeout");
+
+}
 
 function populateCaseNotes(){
    Object.keys(TextData).forEach(category => {
