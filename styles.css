@@ -114,9 +114,21 @@ label{
   margin-left: 1rem;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1300px) {
   .notes-main-section {
     flex-direction: column-reverse;
   }
+  .dropdown-div{
+    display: flex;
+  }
 
+  .template-builder-main{
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  #case-notes-text-field{
+    width: 100%;
+  }
 }
