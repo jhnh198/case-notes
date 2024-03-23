@@ -14,7 +14,6 @@
 
 <body>
 
-  <header class="nav-header">
     <nav>
       <button id="note-nav-button" onClick="showHideTools(this.id)" class="nav-button">
         Note Builder
@@ -23,7 +22,6 @@
         Tools
       </button>
     </nav>
-  </header>
 
   <div class="notes-main-section">
     <!-- area for case text field and issue/troubleshooting/recommended next steps -->
@@ -31,33 +29,33 @@
 
       <div class="dropdown-div">
         <h2> Info </h2>
-        <img z-index="1" class="dropdown-button" data-dropdown="info-fields-div" src="./images/chevron_up.png">
+        <img z-index="1" class="dropdown-button" data-dropdown="info-fields-div" src="./images/chevron_down.png">
       </div>
 
       <div id="info-fields-div" class="info-fields-div">
         <div>
           <label for="first-name-input"> First Name: </label>
-          <input type="text" id="first-name-input" name="first-name-input" data-category="info-fields">  
+          <input class="info-fields-input" type="text" id="first-name-input" name="first-name-input" data-category="info-fields">  
         </div>
 
         <div>
           <label for="last-name-input"> Last Name: </label>
-          <input type="text" id="last-name-input" name="last-name-input" data-category="info-fields">
+          <input class="info-fields-input"type="text" id="last-name-input" name="last-name-input" data-category="info-fields">
         </div>
 
         <div>
           <label for="company-id-input"> Company ID: </label>
-          <input type="text" id="company-id-input" name="company-id-input" data-category="info-fields">
+          <input class="info-fields-input" type="text" id="company-id-input" name="company-id-input" data-category="info-fields">
         </div>
 
         <div>
           <label for="truck-number-input"> Truck Number: </label>
-          <input type="text" id="" name="truck-number-input" data-category="info-fields">  
+          <input class="info-fields-input" type="text" id="" name="truck-number-input" data-category="info-fields">  
         </div>
 
         <div>
           <label for="phone-number-input"> Phone Number: </label>
-          <input type="text" id="phone-number-input" name="phone-number-input" data-category="info-fields">
+          <input class="info-fields-input" type="text" id="phone-number-input" name="phone-number-input" data-category="info-fields">
         </div>
 
       </div>
