@@ -41,6 +41,8 @@ nav{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  max-width: 600px;
+  margin: 1rem;
 }
 
 .info-fields-div{
@@ -69,6 +71,11 @@ nav{
   display: none;
   flex-direction: row;
   flex-wrap: wrap;
+  max-width: 600px;
+}
+
+.info-fields-div{
+  max-width: 600px;
 }
 
 h2{
@@ -117,6 +124,7 @@ label{
 @media (max-width: 1300px) {
   .notes-main-section {
     flex-direction: column-reverse;
+    margin: 1rem;
   }
   .dropdown-div{
     display: flex;
