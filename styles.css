@@ -42,7 +42,6 @@ nav{
   flex-direction: row;
   flex-wrap: wrap;
   max-width: 600px;
-  margin: 1rem;
 }
 
 .info-fields-div{
@@ -78,11 +77,6 @@ nav{
   max-width: 600px;
 }
 
-h2{
-  padding-bottom: 1rem;
-  padding-top: 1rem;
-}
-
 input[type='checkbox']{
   margin: 1rem;
 }
@@ -96,6 +90,15 @@ label{
   width: 30px;
 }
 
+h2{
+  margin-bottom: 1rem;
+}
+
+.case-notes-header{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .dropdown-div{
   display: flex;
   flex-direction: row;
@@ -105,8 +108,8 @@ label{
 
 .dropdown-button{
   height: 16px;
+  margin-top: .4rem;
   width: auto;
-  margin-top: 1.2rem;
 }
 
 .tools{
@@ -119,6 +122,13 @@ label{
 
 .template-dropdown-label{
   margin-left: 1rem;
+}
+
+#text-field-controls{
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-direction: row;
 }
 
 @media (max-width: 1300px) {
