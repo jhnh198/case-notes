@@ -218,7 +218,6 @@ export const StandardTemplates = [
       • GPS reporting on unit
       • Ignition shows on when truck is on
       • Driver is able to log in. Issue resolved
-    </td>
       `,
   },
   {
@@ -294,20 +293,20 @@ export const StandardTemplates = [
       `Symptom/Issue: Unable to reach host
       
       Troubleshooting Completed/Solution: 
-          • Checked OBC and display version
-          • Is the device communicating? Sent test message
-          • Cell active
-          • Truck is running and parked outside
-          • OBC refresh from in-cab
-          • Checked display time matches customer time, date and time zone
-          • Automatic date and time is turned on
-          • Checked excessive shipments and shipments clear up to 15 days on
-          driver logs
-          • Checked for excessive malfunctions and diagnostics
-          • Attempted to log in, issue persists
-          • Reprovisioned display from login screen.
-          • Sent cycle power to OBC and rebooted display
-          • Driver is able to log in. Issue resolved
+      • Checked OBC and display version
+      • Sent test message and message received
+      • Cell active
+      • Truck is running and parked outside
+      • OBC refresh from in-cab
+      • Checked display time matches customer time, date and time zone
+      • Automatic date and time is turned on
+      • Checked excessive shipments and shipments clear up to 15 days on
+      driver logs
+      • Checked for excessive malfunctions and diagnostics
+      • Attempted to log in, issue persists
+      • Reprovisioned display from login screen.
+      • Sent cycle power to OBC and rebooted display
+      • Driver is able to log in. Issue resolved
       `,
   },
   {
