@@ -11,17 +11,17 @@ function showHideTools(id){
   } 
 }
 
-const dropdownButton = document.querySelectorAll(".dropdown-button");
+const collapseButton = document.querySelectorAll(".collapse-button");
 
-dropdownButton.forEach(button => {
+collapseButton.forEach(button => {
   button.addEventListener('click', (e) => {
-    dropdownToggle(e);
+    collapseToggle(e);
   })
 })
 
 //todo: minor bug where the display is not captured the first click but works after
-function dropdownToggle(e){
-  const element = document.querySelector(`#${e.target.getAttribute('data-dropdown')}`);
+function collapseToggle(e){
+  const element = document.querySelector(`#${e.target.getAttribute('data-collapse')}`);
   if(element.style.display === "flex"){
     element.style.display = "none";
     e.target.src = "./images/chevron_down.png"
@@ -30,3 +30,5 @@ function dropdownToggle(e){
     element.style.display = "flex";
   } 
 }
+
+

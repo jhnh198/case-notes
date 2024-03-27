@@ -99,14 +99,14 @@ h2{
   margin-bottom: 1rem;
 }
 
-.dropdown-div{
+.collapse-div{
   display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
 }
 
-.dropdown-button{
+.collapse-button{
   height: 16px;
   margin-top: .4rem;
   width: auto;
@@ -136,7 +136,7 @@ h2{
     flex-direction: column-reverse;
     margin: 1rem;
   }
-  .dropdown-div{
+  .collapse-div{
     display: flex;
   }
 

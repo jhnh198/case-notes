@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-webcomponent@2/dist/tinymce-webcomponent.min.js"></script>
 
   <script src="script.js" type="module" defer></script>
   <script src="./data/InitialCheckboxData.js" type="module" ></script>
@@ -28,9 +29,9 @@
     <!-- area for case text field and issue/troubleshooting/recommended next steps -->
     <main class="template-builder-main">
 
-      <div class="dropdown-div">
+      <div class="collapse-div">
         <h2> Info </h2>
-        <img z-index="1" class="dropdown-button" data-dropdown="info-fields-div" src="./images/chevron_down.png">
+        <img z-index="1" class="collapse-button" data-collapse="info-fields-div" src="./images/chevron_down.png">
       </div>
 
       <div id="info-fields-div" class="info-fields-div">
@@ -65,9 +66,9 @@
         </div>
 
       </div>
-      <div class="dropdown-div">
+      <div class="collapse-div">
         <h2> Issues </h2>
-        <img z-index="1" class="dropdown-button" data-dropdown="issue-checkboxes" src="./images/chevron_down.png">
+        <img z-index="1" class="collapse-button" data-collapse="issue-checkboxes" src="./images/chevron_down.png">
       </div>
 
       <div id="issue-checkboxes" class="checkbox-div">
@@ -185,9 +186,9 @@
         </div>
       </div>
 
-      <div class="dropdown-div">
+      <div class="collapse-div">
         <h2> Troubleshooting </h2>
-        <img z-index="1" class="dropdown-button" data-dropdown="troubleshooting-checkboxes" src="./images/chevron_down.png">
+        <img z-index="1" class="collapse-button" data-collapse="troubleshooting-checkboxes" src="./images/chevron_down.png">
       </div>
 
       <div id="troubleshooting-checkboxes" class="checkbox-div">
@@ -305,9 +306,9 @@
         </div>
       </div>
 
-      <div class="dropdown-div">
+      <div class="collapse-div">
         <h2>Recommended Next Steps </h2>
-        <img z-index="1" class="dropdown-button" data-dropdown="recommended-checkboxes" src="./images/chevron_down.png">
+        <img z-index="1" class="collapse-button" data-collapse="recommended-checkboxes" src="./images/chevron_down.png">
       </div>
 
       <div id="recommended-checkboxes" class="checkbox-div">   
@@ -346,7 +347,6 @@
 
         <div>
         <label class="template-dropdown-label" for="template-dropdown">Templates: </label>
-
         <select name="template-dropdown" id="template-dropdown">
           <option disabled>-- E-mail Templates --</option>
           <option value="blank-email-template">Blank E-mail</option>
@@ -404,7 +404,7 @@
 
 
       <h2 class="case-notes-header"> Case Notes </h2>
-      <textarea maxlength="2000" rows="15" cols="80" id="case-notes-text-field"></textarea>
+      <textarea contenteditable="true" maxlength="2000" rows="15" cols="80" id="case-notes-text-field"></textarea>
     </section>
   </div>
 
