@@ -30,5 +30,3 @@ function collapseToggle(e){
     element.style.display = "flex";
   } 
 }
-
-
