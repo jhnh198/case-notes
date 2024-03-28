@@ -99,12 +99,14 @@ h2{
   margin-bottom: 1rem;
 }
 
+/* add animation on collapse */
 .collapse-div{
   display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
 }
+
 
 .collapse-button{
   height: 16px;
@@ -129,6 +131,12 @@ h2{
   align-content: center;
   align-items: center;
   flex-direction: row;
+}
+
+.content-copied-fadeout{
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
 }
 
 @media (max-width: 1300px) {
