@@ -7,6 +7,7 @@ function checkboxPopulation(){}
 
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const copyButton = document.querySelector('#copy-icon');
+const copyNotification = document.querySelector('#content-copied-notification');
 
 let caseNotesTextField = document.querySelector("#case-notes-text-field");
 
@@ -21,6 +22,7 @@ const phoneNumberInput = document.querySelector("#phone-number-input");
 copyButton.addEventListener("click", () => {
   navigator.clipboard.writeText(caseNotesTextField.value).then(() => {
     console.log('Content copied to clipboard');
+    copyNotification.classList.toggle("show")
   },() => {
     console.error('Failed to copy');
   });
@@ -30,7 +32,7 @@ function showCopyDiv(){
   const copyDiv = document.createElement('div');
   copyDiv.textContent = "Text field notes copied to clipboard"
   copyDiv.classList.add("fadeout");
-
+  copyDiv.remove();
 }
 
 function populateCaseNotes(){

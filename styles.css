@@ -133,10 +133,36 @@ h2{
   flex-direction: row;
 }
 
-.content-copied-fadeout{
+.content-copied-notification{
   visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s 2s, opacity 2s linear;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  left: 52%;
+  margin-left: -80px;
+  top: 12%;
+}
+
+.content-copied-notification .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
 }
 
 @media (max-width: 1300px) {
