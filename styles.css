@@ -90,6 +90,16 @@ label{
   width: 30px;
 }
 
+.copy-icon-clicked{
+  animation: copy-clicked .3s;
+}
+
+@keyframes copy-clicked {
+  0% {background-color: #7c8081;}
+  50% {background-color: #5d5f61;}
+  100% {background-color: #2a2c2c;}
+}
+
 h2{
   margin-bottom: 1rem;
 }
@@ -145,10 +155,10 @@ h2{
   z-index: 1;
   left: 52%;
   margin-left: -80px;
-  top: 12%;
+  top: 8%;
 }
 
-.content-copied-notification .show {
+.show {
   visibility: visible;
   -webkit-animation: fadeIn 1s;
   animation: fadeIn 1s;

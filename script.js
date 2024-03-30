@@ -22,18 +22,16 @@ const phoneNumberInput = document.querySelector("#phone-number-input");
 copyButton.addEventListener("click", () => {
   navigator.clipboard.writeText(caseNotesTextField.value).then(() => {
     console.log('Content copied to clipboard');
-    copyNotification.classList.toggle("show")
+    copyNotification.classList.toggle("show");
+    copyButton.classList.add("copy-icon-clicked");
+    setTimeout(function(){
+      copyNotification.classList.toggle("show");
+      copyButton.classList.remove("copy-icon-clicked");
+    }, 2000)
   },() => {
     console.error('Failed to copy');
   });
 });
-
-function showCopyDiv(){
-  const copyDiv = document.createElement('div');
-  copyDiv.textContent = "Text field notes copied to clipboard"
-  copyDiv.classList.add("fadeout");
-  copyDiv.remove();
-}
 
 function populateCaseNotes(){
    Object.keys(TextData).forEach(category => {
