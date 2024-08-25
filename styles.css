@@ -94,6 +94,7 @@ label{
   animation: copy-clicked .3s;
 }
 
+/* make it go dark towards the middle then back to white / clear at the end could use an opacity transition*/
 @keyframes copy-clicked {
   0% {background-color: #7c8081;}
   50% {background-color: #5d5f61;}
