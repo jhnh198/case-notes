@@ -5,6 +5,10 @@ import { InitialCheckboxData } from "./data/InitialCheckboxData.js";
 // grabs from initial checkbox data to populate all categories and checkboxes 
 function checkboxPopulation(){}
 
+tinymce.init({
+  selector: '#case-notes-text-field'
+});
+
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const copyButton = document.querySelector('#copy-icon');
 const copyNotification = document.querySelector('#content-copied-notification');
@@ -18,7 +22,6 @@ const companyIdInput = document.querySelector("#company-id-input");
 const truckNumberInput = document.querySelector("#truck-number-input");
 const phoneNumberInput = document.querySelector("#phone-number-input");
 
-//todo: add popup that goes away after copy to show content copied
 copyButton.addEventListener("click", () => {
   navigator.clipboard.writeText(caseNotesTextField.value).then(() => {
     console.log('Content copied to clipboard');
