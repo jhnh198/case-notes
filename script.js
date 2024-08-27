@@ -9,6 +9,8 @@ tinymce.init({
   selector: '#case-notes-text-field'
 });
 
+console.log(tinymce.activeEditor);
+
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const copyButton = document.querySelector('#copy-icon');
 const copyNotification = document.querySelector('#content-copied-notification');
@@ -67,7 +69,6 @@ checkboxes.forEach(checkbox => {
     } else{
       let index = TextData[e.target.getAttribute('data-category')].indexOf(e.target.value)
       TextData[e.target.getAttribute('data-category')].splice(index,1);
-      //console.log(TextData[e.target.getAttribute('data-category')])
     }
     caseNotesTextField.value = "";
     populateCaseNotes()
