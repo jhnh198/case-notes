@@ -17,6 +17,9 @@ const copyNotification = document.querySelector('#content-copied-notification');
 
 let caseNotesTextField = document.querySelector("#case-notes-text-field");
 
+//this is how you get the cursor position in a text field to insert notes
+//const cursorPosition = textField.selectionStart;
+
 //get user info
 const firstNameInput = document.querySelector("#first-name-input");
 const lastNameInput = document.querySelector("#last-name-input");
@@ -38,6 +41,7 @@ copyButton.addEventListener("click", () => {
   });
 });
 
+//todo: change this to work with tinymce
 function populateCaseNotes(){
    Object.keys(TextData).forEach(category => {
     if(TextData[category].length !== 0){
@@ -71,7 +75,7 @@ checkboxes.forEach(checkbox => {
       TextData[e.target.getAttribute('data-category')].splice(index,1);
     }
     caseNotesTextField.value = "";
-    populateCaseNotes()
+    populateCaseNotes();
   })
 })
 
