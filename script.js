@@ -41,17 +41,20 @@ copyButton.addEventListener("click", () => {
   });
 });
 
-//todo: change this to work with tinymce
+//todo: adjust formatting
 function populateCaseNotes(){
+  let content = "";
    Object.keys(TextData).forEach(category => {
     if(TextData[category].length !== 0){
-      caseNotesTextField.value += ` ${category}: \n`
+      content += ` ${category}: \n`
       TextData[category].forEach( element => {
-        caseNotesTextField.value += `\t\u2022 ${element} \n`;
+        content += `\t\u2022 ${element} \n`;
       })
-      caseNotesTextField.value += `\n`
+      content += `\n`
     }
    })
+
+   tinymce.activeEditor.setContent(content);
 };
 
 const templateDropdown = document.querySelector('#template-dropdown');
