@@ -42,19 +42,28 @@ copyButton.addEventListener("click", () => {
 });
 
 //todo: adjust formatting
+//formatting is done through html elements and css
 function populateCaseNotes(){
-  let content = "";
-   Object.keys(TextData).forEach(category => {
-    if(TextData[category].length !== 0){
-      content += ` ${category}: \n`
-      TextData[category].forEach( element => {
-        content += `\t\u2022 ${element} \n`;
-      })
-      content += `\n`
-    }
-   })
+  let contentElement = document.createElement('div');
 
-   tinymce.activeEditor.setContent(content);
+   Object.keys(TextData).forEach(category => {
+    let listElement = document.createElement('ul');
+    if(TextData[category].length !== 0){
+      let categoryElement = document.createElement('h3');
+      categoryElement.textContent = category;
+      contentElement.appendChild(categoryElement);
+      TextData[category].forEach( element => {
+        let listItem = document.createElement('li');
+        listItem.textContent = element;
+        listElement.appendChild(listItem);
+      })
+      contentElement.appendChild(listElement);
+    }
+  }
+)
+  //caseNotesTextField.value = contentElement.innerHTML;
+  
+  tinymce.activeEditor.setContent(contentElement.innerHTML);
 };
 
 const templateDropdown = document.querySelector('#template-dropdown');
