@@ -1,15 +1,10 @@
 import { TextData } from "./data/TextData.js";
 import { StandardTemplates } from "./standard-templates/standard-templates.js";
-import { InitialCheckboxData } from "./data/InitialCheckboxData.js";
-
-// grabs from initial checkbox data to populate all categories and checkboxes 
-function checkboxPopulation(){}
+import { TinyMceTemplates } from "./tiny-mce-templates/TinyMceTemplates.js";
 
 tinymce.init({
   selector: '#case-notes-text-field'
 });
-
-console.log(tinymce.activeEditor);
 
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const copyButton = document.querySelector('#copy-icon');
