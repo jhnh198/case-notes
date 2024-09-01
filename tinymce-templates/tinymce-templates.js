@@ -3,13 +3,7 @@
   id: string
   issue: string
   troubleshooting: string[]
-  escalation: object
-    CID: string
-    CompanyName: string
-    ContactName: string
-    ContactPhone: string
-    ContactEmail: string 
-    additionalNotes: string[]
+  escalation: boolean
 */
 
 export const TinyMceTemplates = [

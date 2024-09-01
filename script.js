@@ -26,13 +26,10 @@ const phoneNumberInput = document.querySelector("#phone-number-input");
 
 let escalationInfo = {      
   CID: "" || companyIdInput.value,
-  CompanyName: "" || companyNameInput.value,
   ContactName: "" || firstNameInput.value + " " + lastNameInput.value,
   ContactPhone: "" || phoneNumberInput.value,
-  ContactEmail: "" || emailInput.value,
   TruckNumber: "" || truckNumberInput.value,
-
-},
+}
 
 //todo: change to select all and use the tinymce api to copy text 
 copyButton.addEventListener("click", () => {
@@ -90,14 +87,18 @@ function loadCaseNotesTemplate(selectedTemplateValue){
 
   content.appendChild(troubleshootingElement);
 
-  let escalationElement = document.createElement('ul');
-  Object.values(template.escalation).forEach(element => {
-    let listItem = document.createElement('li');
-    listItem.textContent = element;
-    escalationElement.appendChild(listItem);
-  });
-
-  content.appendChild(escalationElement);
+  if(template.escalation){
+    let escalationElement = document.createElement('ul');
+    let escalationHeader = document.createElement('h3');
+    escalationHeader.textContent = "Escalation Information";
+    escalationElement.appendChild(escalationHeader);
+    escalationInfo.forEach(element => { 
+      let listItem = document.createElement('li');
+      listItem.textContent = element;
+      escalationElement.appendChild(listItem);  
+    });
+    content.appendChild(escalationElement);
+  }
 
   template.additionalNotes.forEach(element => {
     let listItem = document.createElement('li');
