@@ -19,8 +19,20 @@ let caseNotesTextField = document.querySelector("#case-notes-text-field");
 const firstNameInput = document.querySelector("#first-name-input");
 const lastNameInput = document.querySelector("#last-name-input");
 const companyIdInput = document.querySelector("#company-id-input");
+//const companyNameInput = document.querySelector("#company-name-input");
 const truckNumberInput = document.querySelector("#truck-number-input");
 const phoneNumberInput = document.querySelector("#phone-number-input");
+//const dsnInput = document.querySelector("#dsn-input");
+
+let escalationInfo = {      
+  CID: "" || companyIdInput.value,
+  CompanyName: "" || companyNameInput.value,
+  ContactName: "" || firstNameInput.value + " " + lastNameInput.value,
+  ContactPhone: "" || phoneNumberInput.value,
+  ContactEmail: "" || emailInput.value,
+  TruckNumber: "" || truckNumberInput.value,
+
+},
 
 //todo: change to select all and use the tinymce api to copy text 
 copyButton.addEventListener("click", () => {
@@ -62,10 +74,40 @@ templateDropdown.addEventListener("change", (e) => {
   loadCaseNotesTemplate(e.target.value);
 });
 
-//todo: change template values to work with tinymce
 function loadCaseNotesTemplate(selectedTemplateValue){
-  const template = StandardTemplates.find((element) => element.id === selectedTemplateValue)
-  caseNotesTextField.value = template.templateText;
+  const template = TinyMceTemplates.find((element) => element.id === selectedTemplateValue);
+  let content = document.createElement('div');
+  let issueElement = document.createElement('h3');
+  issueElement.textContent = `Issue: ${template.issue}`;
+  content.appendChild(issueElement);
+
+  let troubleshootingElement = document.createElement('ul');
+  template.troubleshooting.forEach(element => {
+    let listItem = document.createElement('li');
+    listItem.textContent = element;
+    troubleshootingElement.appendChild(listItem);
+  });
+
+  content.appendChild(troubleshootingElement);
+
+  let escalationElement = document.createElement('ul');
+  Object.values(template.escalation).forEach(element => {
+    let listItem = document.createElement('li');
+    listItem.textContent = element;
+    escalationElement.appendChild(listItem);
+  });
+
+  content.appendChild(escalationElement);
+
+  template.additionalNotes.forEach(element => {
+    let listItem = document.createElement('li');
+    listItem.textContent = element;
+    escalationElement.appendChild(listItem);
+  });
+
+  content.appendChild(escalationElement);
+
+  tinymce.activeEditor.setContent(content.innerHTML);
 };
 
 

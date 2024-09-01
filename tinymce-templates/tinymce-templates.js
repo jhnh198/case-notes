@@ -1,7 +1,7 @@
 /*
   object template
   id: string
-  symptom: string
+  issue: string
   troubleshooting: string[]
   escalation: object
     CID: string
@@ -15,7 +15,7 @@
 export const TinyMceTemplates = [
   {
     id: "dsn-pending-new-template",
-    symptom: "Add New DSN To Pending / OTAP OBC to Current",
+    issue: "Add New DSN To Pending / OTAP OBC to Current",
     troubleshooting: [
       `DSN has not been in this account prior / in the past two months`,
       `Added unit to pending`,
@@ -23,17 +23,11 @@ export const TinyMceTemplates = [
       `Sent OTAP to current version`,
       `Escalating to CSM for new unit add`,
     ],
-    escalation: {      
-      CID: "",
-      CompanyName: "",
-      ContactName: "",
-      ContactPhone: "",
-      ContactEmail: "",
-      additionalNotes: [
-        `What is the problem or the issue?`,
-        `What would the customer like the CM to accomplish?`,
-      ]
-    },
+    escalation: true,
+    additionalNotes: [
+      `What is the problem or the issue?`,
+      `What would the customer like the CM to accomplish?`,
+    ],
   },
   {
     id: "dsn-pending-active-template",
