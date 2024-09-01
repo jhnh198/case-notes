@@ -27,6 +27,7 @@ const companyIdInput = document.querySelector("#company-id-input");
 const truckNumberInput = document.querySelector("#truck-number-input");
 const phoneNumberInput = document.querySelector("#phone-number-input");
 
+//todo: change to select all and use the tinymce api to copy text 
 copyButton.addEventListener("click", () => {
   navigator.clipboard.writeText(caseNotesTextField.value).then(() => {
     console.log('Content copied to clipboard');
@@ -61,7 +62,6 @@ function populateCaseNotes(){
     }
   }
 )
-  //caseNotesTextField.value = contentElement.innerHTML;
   
   tinymce.activeEditor.setContent(contentElement.innerHTML);
 };
@@ -71,6 +71,7 @@ templateDropdown.addEventListener("change", (e) => {
   loadCaseNotesTemplate(e.target.value);
 });
 
+//todo: change template values to work with tinymce
 function loadCaseNotesTemplate(selectedTemplateValue){
   const template = StandardTemplates.find((element) => element.id === selectedTemplateValue)
   caseNotesTextField.value = template.templateText;
