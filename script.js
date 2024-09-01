@@ -1,6 +1,6 @@
 import { TextData } from "./data/TextData.js";
 import { StandardTemplates } from "./standard-templates/standard-templates.js";
-import { TinyMceTemplates } from "./tiny-mce-templates/TinyMceTemplates.js";
+import { TinyMceTemplates } from "./tinymce-templates/tinymce-templates.js";
 
 tinymce.init({
   selector: '#case-notes-text-field'
@@ -24,17 +24,14 @@ const phoneNumberInput = document.querySelector("#phone-number-input");
 
 //todo: change to select all and use the tinymce api to copy text 
 copyButton.addEventListener("click", () => {
-  navigator.clipboard.writeText(caseNotesTextField.value).then(() => {
-    console.log('Content copied to clipboard');
+  tinymce.execCommand('selectAll');
+  tinymce.execCommand('copy');
+  copyNotification.classList.toggle("show");
+  copyButton.classList.add("copy-icon-clicked");
+  setTimeout(function(){
     copyNotification.classList.toggle("show");
-    copyButton.classList.add("copy-icon-clicked");
-    setTimeout(function(){
-      copyNotification.classList.toggle("show");
-      copyButton.classList.remove("copy-icon-clicked");
-    }, 2000)
-  },() => {
-    console.error('Failed to copy');
-  });
+    copyButton.classList.remove("copy-icon-clicked");
+  }, 2000);
 });
 
 //todo: adjust formatting
@@ -57,7 +54,6 @@ function populateCaseNotes(){
     }
   }
 )
-  
   tinymce.activeEditor.setContent(contentElement.innerHTML);
 };
 
