@@ -25,10 +25,10 @@ const phoneNumberInput = document.querySelector("#phone-number-input");
 //const dsnInput = document.querySelector("#dsn-input");
 
 let escalationInfo = {      
-  CID: "" || companyIdInput.value,
-  ContactName: "" || firstNameInput.value + " " + lastNameInput.value,
-  ContactPhone: "" || phoneNumberInput.value,
-  TruckNumber: "" || truckNumberInput.value,
+  CID: `CID: ${companyIdInput.value}`,
+  ContactName: `Contact Name: ${firstNameInput.value} ${lastNameInput.value}`,
+  ContactPhone: `Contact Phone: ${phoneNumberInput.value}`,
+  TruckNumber: `Truck Number: ${truckNumberInput.value}`,
 }
 
 //todo: change to select all and use the tinymce api to copy text 
@@ -110,7 +110,6 @@ function loadCaseNotesTemplate(selectedTemplateValue){
 
   tinymce.activeEditor.setContent(content.innerHTML);
 };
-
 
 //adds and removes checkbox values when checked or unchecked
 checkboxes.forEach(checkbox => {
