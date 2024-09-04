@@ -100,13 +100,18 @@ function loadCaseNotesTemplate(selectedTemplateValue){
     content.appendChild(escalationElement);
   }
 
+  let additionalNotesElement = document.createElement('ul');
+  let additionalNotesHeader = document.createElement('h3');
+  additionalNotesHeader.textContent = "Additional Notes";
+  additionalNotesElement.appendChild(additionalNotesHeader);
   template.additionalNotes.forEach(element => {
+
     let listItem = document.createElement('li');
     listItem.textContent = element;
     escalationElement.appendChild(listItem);
   });
 
-  content.appendChild(escalationElement);
+  content.appendChild(additionalNotesElement);
 
   tinymce.activeEditor.setContent(content.innerHTML);
 };
@@ -120,7 +125,6 @@ checkboxes.forEach(checkbox => {
       let index = TextData[e.target.getAttribute('data-category')].indexOf(e.target.value)
       TextData[e.target.getAttribute('data-category')].splice(index,1);
     }
-    caseNotesTextField.value = "";
     populateCaseNotes();
   })
 })

@@ -1,6 +1,8 @@
 export const TextData =
 {
-  Issues: [],
-  Troubleshooting: [],
-  Recommended: []
+  issue: [],
+  troubleshooting: [],
+  recommended: [],
+  escalation: [],
+  additionalNotes: [],
 }
