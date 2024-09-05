@@ -1,5 +1,4 @@
 import { TextData } from "./data/TextData.js";
-import { StandardTemplates } from "./standard-templates/standard-templates.js";
 import { TinyMceTemplates } from "./tinymce-templates/tinymce-templates.js";
 
 tinymce.init({
@@ -31,7 +30,6 @@ let escalationInfo = {
   TruckNumber: `Truck Number: ${truckNumberInput.value}`,
 }
 
-//todo: change to select all and use the tinymce api to copy text 
 copyButton.addEventListener("click", () => {
   tinymce.execCommand('selectAll');
   tinymce.execCommand('copy');
@@ -43,8 +41,6 @@ copyButton.addEventListener("click", () => {
   }, 2000);
 });
 
-//todo: adjust formatting
-//formatting is done through html elements and css
 function populateCaseNotes(){
   let contentElement = document.createElement('div');
 
@@ -115,6 +111,50 @@ function loadCaseNotesTemplate(selectedTemplateValue){
 
   tinymce.activeEditor.setContent(content.innerHTML);
 };
+
+function mergeCaseNotesTemplate(template){
+  let content = document.createElement('div');
+  let issueElement = document.createElement('h3');
+  issueElement.textContent = `Issue: ${template.issue}`;
+  content.appendChild(issueElement);
+
+  let troubleshootingElement = document.createElement('ul');
+  template.troubleshooting.forEach(element => {
+    let listItem = document.createElement('li');
+    listItem.textContent = element;
+    troubleshootingElement.appendChild(listItem);
+  });
+
+  content.appendChild(troubleshootingElement);
+
+  if(template.escalation){
+    let escalationElement = document.createElement('ul');
+    let escalationHeader = document.createElement('h3');
+    escalationHeader.textContent = "Escalation Information";
+    escalationElement.appendChild(escalationHeader);
+    escalationInfo.forEach(element => { 
+      let listItem = document.createElement('li');
+      listItem.textContent = element;
+      escalationElement.appendChild(listItem);  
+    });
+    content.appendChild(escalationElement);
+  }
+
+  let additionalNotesElement = document.createElement('ul');
+  let additionalNotesHeader = document.createElement('h3');
+  additionalNotesHeader.textContent = "Additional Notes";
+  additionalNotesElement.appendChild(additionalNotesHeader);
+  template.additionalNotes.forEach(element => {
+
+    let listItem = document.createElement('li');
+    listItem.textContent = element;
+    escalationElement.appendChild(listItem);
+  });
+
+  content.appendChild(additionalNotesElement);
+
+  return content.innerHTML;
+}
 
 //adds and removes checkbox values when checked or unchecked
 checkboxes.forEach(checkbox => {
