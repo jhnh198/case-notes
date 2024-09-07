@@ -64,7 +64,8 @@ function populateCaseNotes(){
 
 const templateDropdown = document.querySelector('#template-dropdown');
 templateDropdown.addEventListener("change", (e) => {
-  loadCaseNotesTemplate(e.target.value);
+  let selectedTemplateValue = TinyMceTemplates.find((element) => element.id === e.target.value);
+  mergeCaseNotesTemplate(selectedTemplateValue);
 });
 
 function loadCaseNotesTemplate(selectedTemplateValue){
@@ -113,66 +114,21 @@ function loadCaseNotesTemplate(selectedTemplateValue){
 };
 
 function mergeCaseNotesTemplate(template){
-  let content = document.createElement('div');
-  let issueElement = document.createElement('h3');
-  issueElement.textContent = `Issue: ${template.issue}`;
+  let TextData = {
+    issue: template.issue,
+    troubleshooting: template.troubleshooting,
+    recommended: [],
+    escalation: template.escalation,
+    additionalNotes: template.additionalNotes,
+  };
 
-  TextData[issue].forEach(element => {
-    let listItem = document.createElement('li');
-    listItem.textContent = element;
-    issueElement.appendChild(listItem);
+  checkboxes.forEach(checkbox => {
+    if(checkbox.checked){
+      TextData[checkbox.getAttribute('data-category')].push(checkbox.value);
+    }
   });
 
-  let troubleshootingElement = document.createElement('ul');
-  template.troubleshooting.forEach(element => {
-    let listItem = document.createElement('li');
-    listItem.textContent = element;
-    troubleshootingElement.appendChild(listItem);
-  });
-
-  TextData[troubleshooting].forEach(element => {
-    let listItem = document.createElement('li');
-    listItem.textContent = element;
-    troubleshootingElement.appendChild(listItem);
-  });
-
-  TextData[recommended].forEach(element => {
-    let listItem = document.createElement('li');
-    listItem.textContent = element;
-    troubleshootingElement.appendChild(listItem);
-  });
-
-  let additionalNotesElement = document.createElement('ul');
-  let additionalNotesHeader = document.createElement('h3');
-  additionalNotesHeader.textContent = "Additional Notes";
-  additionalNotesElement.appendChild(additionalNotesHeader);
-  template.additionalNotes.forEach(element => {
-
-    let listItem = document.createElement('li');
-    listItem.textContent = element;
-    escalationElement.appendChild(listItem);
-  });
-
-  content.appendChild(issueElement);
-  
-  content.appendChild(troubleshootingElement);
-
-  content.appendChild(additionalNotesElement);
-  
-  if(template.escalation){
-    let escalationElement = document.createElement('ul');
-    let escalationHeader = document.createElement('h3');
-    escalationHeader.textContent = "Escalation Information";
-    escalationElement.appendChild(escalationHeader);
-    escalationInfo.forEach(element => { 
-      let listItem = document.createElement('li');
-      listItem.textContent = element;
-      escalationElement.appendChild(listItem);  
-    });
-    content.appendChild(escalationElement);
-  }
-
-  return content.innerHTML;
+  populateCaseNotes();
 }
 
 //adds and removes checkbox values when checked or unchecked
