@@ -1,4 +1,4 @@
-import { TextData } from "./data/TextData.js";
+//import { TextData } from "./data/TextData.js";
 import { TinyMceTemplates } from "./tinymce-templates/tinymce-templates.js";
 
 tinymce.init({
@@ -41,7 +41,7 @@ copyButton.addEventListener("click", () => {
   }, 2000);
 });
 
-function populateCaseNotes(){
+function populateCaseNotes(TextData){
   let contentElement = document.createElement('div');
 
    Object.keys(TextData).forEach(category => {
@@ -59,7 +59,7 @@ function populateCaseNotes(){
     }
   }
 )
-  tinymce.activeEditor.setContent(contentElement.innerHTML);
+  tinymce.activeEditor.setContent(contentElement);
 };
 
 const templateDropdown = document.querySelector('#template-dropdown');
@@ -110,7 +110,7 @@ function loadCaseNotesTemplate(selectedTemplateValue){
 
   content.appendChild(additionalNotesElement);
 
-  tinymce.activeEditor.setContent(content.innerHTML);
+  tinymce.activeEditor.setContent(content);
 };
 
 function mergeCaseNotesTemplate(template){
@@ -128,7 +128,7 @@ function mergeCaseNotesTemplate(template){
     }
   });
 
-  populateCaseNotes();
+  populateCaseNotes(TextData);
 }
 
 //adds and removes checkbox values when checked or unchecked

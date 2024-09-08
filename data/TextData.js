@@ -1,4 +1,4 @@
-export const TextData =
+export let TextData =
 {
   issue: [],
   troubleshooting: [],
