@@ -9,11 +9,6 @@ const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const copyButton = document.querySelector('#copy-icon');
 const copyNotification = document.querySelector('#content-copied-notification');
 
-let caseNotesTextField = document.querySelector("#case-notes-text-field");
-
-//this is how you get the cursor position in a text field to insert notes
-//const cursorPosition = textField.selectionStart;
-
 //get user info
 const firstNameInput = document.querySelector("#first-name-input");
 const lastNameInput = document.querySelector("#last-name-input");
@@ -22,15 +17,6 @@ const companyIdInput = document.querySelector("#company-id-input");
 const truckNumberInput = document.querySelector("#truck-number-input");
 const phoneNumberInput = document.querySelector("#phone-number-input");
 //const dsnInput = document.querySelector("#dsn-input");
-
-let escalationInfo = {      
-  CID: `CID: ${companyIdInput.value}`,
-  ContactName: `Contact Name: ${firstNameInput.value} ${lastNameInput.value}`,
-  ContactPhone: `Contact Phone: ${phoneNumberInput.value}`,
-  TruckNumber: `Truck Number: ${truckNumberInput.value}`,
-}
-
-
 
 copyButton.addEventListener("click", () => {
   tinymce.execCommand('selectAll');
@@ -50,7 +36,7 @@ function populateCaseNotes(TextData){
     let listElement = document.createElement('ul');
     if(TextData[category].length !== 0 && category !== 'escalation'){
       let categoryElement = document.createElement('h3');
-      categoryElement.textContent = category.to;
+      categoryElement.textContent = category.toLocaleUpperCase();
       contentElement.appendChild(categoryElement);
       Array(TextData[category]).forEach( element => {
         let listItem = document.createElement('li');
@@ -59,29 +45,30 @@ function populateCaseNotes(TextData){
       })
       contentElement.appendChild(listElement);
     }
+  });
 
-    if(TextData['escalation']){
-      let escalationElement = document.createElement('ul');
-      let escalationHeader = document.createElement('h3');
-      escalationHeader.textContent = "Escalation Information";
-      escalationElement.appendChild(escalationHeader);
+  if(TextData['escalation']){
+    let escalationElement = document.createElement('ul');
+    let escalationHeader = document.createElement('h3');
+    escalationHeader.textContent = "Escalation Information";
+    escalationElement.appendChild(escalationHeader);
 
-      escalationInfo = {      
-        CID: `CID: ${companyIdInput.value}`,
-        ContactName: `Contact Name: ${firstNameInput.value} ${lastNameInput.value}`,
-        ContactPhone: `Contact Phone: ${phoneNumberInput.value}`,
-        TruckNumber: `Truck Number: ${truckNumberInput.value}`,
-      }
-      Object.keys(escalationInfo).forEach(element => { 
-        console.log(element);
-        let listItem = document.createElement('li');
-        listItem.textContent = element;
-        escalationElement.appendChild(listItem);  
-      });
-      contentElement.appendChild(escalationElement);
+    let escalationInfo = {      
+      CID: `CID: ${companyIdInput.value}`,
+      ContactName: `Contact Name: ${firstNameInput.value} ${lastNameInput.value}`,
+      ContactPhone: `Contact Phone: ${phoneNumberInput.value}`,
+      TruckNumber: `Truck Number: ${truckNumberInput.value}`,
     }
+
+    console.log(escalationInfo);
+    Object.keys(escalationInfo).forEach(key => { 
+      let listItem = document.createElement('li');
+      listItem.textContent = escalationInfo[key];
+      escalationElement.appendChild(listItem);  
+    });
+    contentElement.appendChild(escalationElement);
   }
-)
+
   tinymce.activeEditor.setContent(contentElement.innerHTML);
 };
 
@@ -90,51 +77,6 @@ templateDropdown.addEventListener("change", (e) => {
   let selectedTemplateValue = TinyMceTemplates.find((element) => element.id === e.target.value);
   mergeCaseNotesTemplate(selectedTemplateValue);
 });
-
-/* function loadCaseNotesTemplate(selectedTemplateValue){
-  const template = TinyMceTemplates.find((element) => element.id === selectedTemplateValue);
-  let content = document.createElement('div');
-  let issueElement = document.createElement('h3');
-  issueElement.textContent = `Issue: ${template.issue}`;
-  content.appendChild(issueElement);
-
-  let troubleshootingElement = document.createElement('ul');
-  template.troubleshooting.forEach(element => {
-    let listItem = document.createElement('li');
-    listItem.textContent = element;
-    troubleshootingElement.appendChild(listItem);
-  });
-
-  content.appendChild(troubleshootingElement);
-
-  if(template.escalation){
-    let escalationElement = document.createElement('ul');
-    let escalationHeader = document.createElement('h3');
-    escalationHeader.textContent = "Escalation Information";
-    escalationElement.appendChild(escalationHeader);
-    escalationInfo.forEach(element => { 
-      let listItem = document.createElement('li');
-      listItem.textContent = element;
-      escalationElement.appendChild(listItem);  
-    });
-    content.appendChild(escalationElement);
-  }
-
-  let additionalNotesElement = document.createElement('ul');
-  let additionalNotesHeader = document.createElement('h3');
-  additionalNotesHeader.textContent = "Additional Notes";
-  additionalNotesElement.appendChild(additionalNotesHeader);
-  template.additionalNotes.forEach(element => {
-
-    let listItem = document.createElement('li');
-    listItem.textContent = element;
-    escalationElement.appendChild(listItem);
-  });
-
-  content.appendChild(additionalNotesElement);
-
-  tinymce.activeEditor.setContent(content);
-}; */
 
 function mergeCaseNotesTemplate(template){
   let TextData = {
