@@ -30,6 +30,8 @@ let escalationInfo = {
   TruckNumber: `Truck Number: ${truckNumberInput.value}`,
 }
 
+
+
 copyButton.addEventListener("click", () => {
   tinymce.execCommand('selectAll');
   tinymce.execCommand('copy');
@@ -48,7 +50,7 @@ function populateCaseNotes(TextData){
     let listElement = document.createElement('ul');
     if(TextData[category].length !== 0 && category !== 'escalation'){
       let categoryElement = document.createElement('h3');
-      categoryElement.textContent = category;
+      categoryElement.textContent = category.to;
       contentElement.appendChild(categoryElement);
       Array(TextData[category]).forEach( element => {
         let listItem = document.createElement('li');
@@ -63,7 +65,15 @@ function populateCaseNotes(TextData){
       let escalationHeader = document.createElement('h3');
       escalationHeader.textContent = "Escalation Information";
       escalationElement.appendChild(escalationHeader);
-      Object.keys(escalationInfo, element => { 
+
+      escalationInfo = {      
+        CID: `CID: ${companyIdInput.value}`,
+        ContactName: `Contact Name: ${firstNameInput.value} ${lastNameInput.value}`,
+        ContactPhone: `Contact Phone: ${phoneNumberInput.value}`,
+        TruckNumber: `Truck Number: ${truckNumberInput.value}`,
+      }
+      Object.keys(escalationInfo).forEach(element => { 
+        console.log(element);
         let listItem = document.createElement('li');
         listItem.textContent = element;
         escalationElement.appendChild(listItem);  
@@ -81,7 +91,7 @@ templateDropdown.addEventListener("change", (e) => {
   mergeCaseNotesTemplate(selectedTemplateValue);
 });
 
-function loadCaseNotesTemplate(selectedTemplateValue){
+/* function loadCaseNotesTemplate(selectedTemplateValue){
   const template = TinyMceTemplates.find((element) => element.id === selectedTemplateValue);
   let content = document.createElement('div');
   let issueElement = document.createElement('h3');
@@ -124,7 +134,7 @@ function loadCaseNotesTemplate(selectedTemplateValue){
   content.appendChild(additionalNotesElement);
 
   tinymce.activeEditor.setContent(content);
-};
+}; */
 
 function mergeCaseNotesTemplate(template){
   let TextData = {
