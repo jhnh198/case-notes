@@ -46,20 +46,33 @@ function populateCaseNotes(TextData){
 
    Object.keys(TextData).forEach(category => {
     let listElement = document.createElement('ul');
-    if(TextData[category].length !== 0){
+    if(TextData[category].length !== 0 && category !== 'escalation'){
       let categoryElement = document.createElement('h3');
       categoryElement.textContent = category;
       contentElement.appendChild(categoryElement);
-      TextData[category].forEach( element => {
+      Array(TextData[category]).forEach( element => {
         let listItem = document.createElement('li');
         listItem.textContent = element;
         listElement.appendChild(listItem);
       })
       contentElement.appendChild(listElement);
     }
+
+    if(TextData['escalation']){
+      let escalationElement = document.createElement('ul');
+      let escalationHeader = document.createElement('h3');
+      escalationHeader.textContent = "Escalation Information";
+      escalationElement.appendChild(escalationHeader);
+      Object.keys(escalationInfo, element => { 
+        let listItem = document.createElement('li');
+        listItem.textContent = element;
+        escalationElement.appendChild(listItem);  
+      });
+      contentElement.appendChild(escalationElement);
+    }
   }
 )
-  tinymce.activeEditor.setContent(contentElement);
+  tinymce.activeEditor.setContent(contentElement.innerHTML);
 };
 
 const templateDropdown = document.querySelector('#template-dropdown');
