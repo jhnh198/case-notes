@@ -2,7 +2,8 @@
 import { TinyMceTemplates } from "./tinymce-templates/tinymce-templates.js";
 
 tinymce.init({
-  selector: '#case-notes-text-field'
+  selector: '#case-notes-text-field',
+  license_key: `gpl|${process.env.API_KEY}`,
 });
 
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
