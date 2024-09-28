@@ -1,4 +1,4 @@
-import { TextData } from "./data/TextData.js";
+//import { TextData } from "./data/TextData.js";
 import { TinyMceTemplates } from "./tinymce-templates/tinymce-templates.js";
 
 tinymce.init({
@@ -98,6 +98,13 @@ function mergeCaseNotesTemplate(template){
 
 //adds and removes checkbox values when checked or unchecked
 checkboxes.forEach(checkbox => {
+  let TextData = { 
+    issue: [],
+    troubleshooting: [],
+    recommended: [],
+    escalation: [],
+    additionalNotes: [],
+  }
   checkbox.addEventListener('click', (e) =>{
     if(e.target.checked){
       TextData[e.target.getAttribute('data-category')].push(e.target.value)
@@ -105,9 +112,9 @@ checkboxes.forEach(checkbox => {
       let index = TextData[e.target.getAttribute('data-category')].indexOf(e.target.value)
       TextData[e.target.getAttribute('data-category')].splice(index,1);
     }
-    populateCaseNotes();
+    populateCaseNotes(TextData);
   })
-})
+});
 
 const commaInsertionInputText = document.querySelector("#comma-insertion-input-text");
 let commaInsertionOutputArea = document.querySelector("#comma-insertion-output-area");
