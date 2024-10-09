@@ -1,4 +1,4 @@
-//import { TextData } from "./data/TextData.js";
+import { TextData } from "./data/TextData.js";
 import { TinyMceTemplates } from "./tinymce-templates/tinymce-templates.js";
 
 tinymce.init({
@@ -29,16 +29,18 @@ copyButton.addEventListener("click", () => {
   }, 2000);
 });
 
-function populateCaseNotes(TextData){
+function populateCaseNotes(){
   let contentElement = document.createElement('div');
 
    Object.keys(TextData).forEach(category => {
     let listElement = document.createElement('ul');
+    console.log('category' + category);
     if(TextData[category].length !== 0 && category !== 'escalation'){
       let categoryElement = document.createElement('h3');
       categoryElement.textContent = category.toLocaleUpperCase();
       contentElement.appendChild(categoryElement);
       Array(TextData[category]).forEach( element => {
+        console.log('element' + element);
         let listItem = document.createElement('li');
         listItem.textContent = element;
         listElement.appendChild(listItem);
@@ -60,7 +62,6 @@ function populateCaseNotes(TextData){
       TruckNumber: `Truck Number: ${truckNumberInput.value}`,
     }
 
-    console.log(escalationInfo);
     Object.keys(escalationInfo).forEach(key => { 
       let listItem = document.createElement('li');
       listItem.textContent = escalationInfo[key];
@@ -78,8 +79,9 @@ templateDropdown.addEventListener("change", (e) => {
   mergeCaseNotesTemplate(selectedTemplateValue);
 });
 
+//todo: get template data to merge with case notes. replace the text data with the template data and all the checked checkboxes
 function mergeCaseNotesTemplate(template){
-  let TextData = {
+  let templateData = {
     issue: template.issue,
     troubleshooting: template.troubleshooting,
     recommended: [],
@@ -93,26 +95,20 @@ function mergeCaseNotesTemplate(template){
     }
   });
 
-  populateCaseNotes(TextData);
+  populateCaseNotes();
 }
 
 //adds and removes checkbox values when checked or unchecked
+//todo: allow multiple checkboxes to be checked
 checkboxes.forEach(checkbox => {
-  let TextData = { 
-    issue: [],
-    troubleshooting: [],
-    recommended: [],
-    escalation: [],
-    additionalNotes: [],
-  }
   checkbox.addEventListener('click', (e) =>{
     if(e.target.checked){
-      TextData[e.target.getAttribute('data-category')].push(e.target.value)
+      TextData[e.target.getAttribute('data-category')].push(e.target.value);
     } else{
       let index = TextData[e.target.getAttribute('data-category')].indexOf(e.target.value)
       TextData[e.target.getAttribute('data-category')].splice(index,1);
     }
-    populateCaseNotes(TextData);
+    populateCaseNotes();
   })
 });
 
