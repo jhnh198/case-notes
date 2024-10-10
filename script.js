@@ -34,13 +34,11 @@ function populateCaseNotes(){
 
    Object.keys(TextData).forEach(category => {
     let listElement = document.createElement('ul');
-    console.log('category' + category);
     if(TextData[category].length !== 0 && category !== 'escalation'){
       let categoryElement = document.createElement('h3');
       categoryElement.textContent = category.toLocaleUpperCase();
       contentElement.appendChild(categoryElement);
       Array(TextData[category]).forEach( element => {
-        console.log('element' + element);
         let listItem = document.createElement('li');
         listItem.textContent = element;
         listElement.appendChild(listItem);
@@ -89,10 +87,21 @@ function mergeCaseNotesTemplate(template){
     additionalNotes: template.additionalNotes,
   };
 
+  let checkboxData = {
+    issue: [],
+    troubleshooting: [],
+    recommended: [],
+    escalation: [],
+    additionalNotes: [],
+  }
   checkboxes.forEach(checkbox => {
     if(checkbox.checked){
-      TextData[checkbox.getAttribute('data-category')].push(checkbox.value);
+      checkboxData[checkbox.getAttribute('data-category')].push(checkbox.value);
     }
+  });
+
+  templateData.forEach((category) => {
+
   });
 
   populateCaseNotes();
