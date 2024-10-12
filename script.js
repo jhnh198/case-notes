@@ -100,11 +100,21 @@ function mergeCaseNotesTemplate(template){
     }
   });
 
-  templateData.forEach((category) => {
+  let mergedText = {
+    issue: templateData.issue,
+    troubleshooting: templateData.troubleshooting,
+    recommended: templateData.recommended.concat(checkboxData.recommended),
+    escalation: templateData.escalation,
+    additionalNotes: templateData.additionalNotes,
+  }
 
+  Object.keys(mergedText).forEach(category => {
+    if(mergedText[category].length !== 0 && category !== 'escalation'){
+      TextData[category] = mergedText[category];
+    }
   });
 
-  populateCaseNotes();
+  return mergedText;
 }
 
 //adds and removes checkbox values when checked or unchecked
