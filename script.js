@@ -4,13 +4,19 @@ tinymce.init({
   selector: '#case-notes-text-field',
 });
 
-let TextData = {
+let TemplateData = {
   issue: [],
   troubleshooting: [],
   recommended: [],
   escalation: [],
   additionalNotes: [],
 }
+
+let checkboxData = {
+  issue: [],
+  troubleshooting: [],
+  recommended: [],
+};
 
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const copyButton = document.querySelector('#copy-icon');
@@ -39,19 +45,27 @@ copyButton.addEventListener("click", () => {
 function populateCaseNotes(){
   let contentElement = document.createElement('div');
 
-   Object.keys(TextData).forEach(category => {
+  let NoteData = {
+    issue: [],
+    troubleshooting: [],
+    recommended: [],
+    escalation: [],
+    additionalNotes: [],
+  }
+
+  Object.keys(NoteData).forEach(category => {
     let listElement = document.createElement('ul');
-    if(TextData[category].length !== 0 && category !== 'escalation'){
-      let categoryElement = document.createElement('h3');
-      categoryElement.textContent = category.toLocaleUpperCase();
-      contentElement.appendChild(categoryElement);
-      Array(TextData[category]).forEach( element => {
-        let listItem = document.createElement('li');
-        listItem.textContent = element;
+    let categoryElement = document.createElement('h3');
+    categoryElement.textContent = category.toLocaleUpperCase();
+    contentElement.appendChild(categoryElement);
+
+    checkboxes.forEach(element => {
+      let listItem = document.createElement('li');
+      if (element.checked && element.getAttribute('data-category') === category){
+        listItem.textContent = element.value;
         listElement.appendChild(listItem);
-      })
-      contentElement.appendChild(listElement);
-    }
+      }
+    });
   });
 
   if(TextData['escalation']){
@@ -76,15 +90,14 @@ function populateCaseNotes(){
   }
 
   tinymce.activeEditor.setContent(contentElement.innerHTML);
+
+  const templateDropdown = document.querySelector('#template-dropdown');
+  templateDropdown.addEventListener("change", (e) => {
+    let selectedTemplateValue = TinyMceTemplates.find((element) => element.id === e.target.value);
+    mergeCaseNotesTemplate(selectedTemplateValue);
+  });
 };
 
-const templateDropdown = document.querySelector('#template-dropdown');
-templateDropdown.addEventListener("change", (e) => {
-  let selectedTemplateValue = TinyMceTemplates.find((element) => element.id === e.target.value);
-  mergeCaseNotesTemplate(selectedTemplateValue);
-});
-
-//todo: get template data to merge with case notes. replace the text data with the template data and all the checked checkboxes
 function mergeCaseNotesTemplate(template){
   let templateData = {
     issue: template.issue,
@@ -101,6 +114,7 @@ function mergeCaseNotesTemplate(template){
     escalation: [],
     additionalNotes: [],
   }
+
   checkboxes.forEach(checkbox => {
     if(checkbox.checked){
       checkboxData[checkbox.getAttribute('data-category')].push(checkbox.value);
@@ -108,7 +122,6 @@ function mergeCaseNotesTemplate(template){
   });
 
   let mergedText = {};
-;
 
   return mergedText;
 }
