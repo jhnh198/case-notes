@@ -19,7 +19,7 @@ collapseButton.forEach(button => {
   })
 })
 
-//todo: minor bug where the display is not captured the first click but works after
+//todo: move collapse to work for the full area of the div
 function collapseToggle(e){
   const element = document.querySelector(`#${e.target.getAttribute('data-collapse')}`);
   if(element.style.display === "flex"){
