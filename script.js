@@ -21,6 +21,7 @@ let checkboxData = {
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const copyButton = document.querySelector('#copy-icon');
 const copyNotification = document.querySelector('#content-copied-notification');
+const TemplateDropdown = document.querySelector('#template-dropdown');
 
 //get user info
 const firstNameInput = document.querySelector("#first-name-input");
@@ -54,11 +55,13 @@ function populateCaseNotes(){
   }
 
   Object.keys(NoteData).forEach(category => {
+    //set header for each category
     let listElement = document.createElement('ul');
     let categoryElement = document.createElement('h3');
     categoryElement.textContent = category.toLocaleUpperCase();
     contentElement.appendChild(categoryElement);
 
+    //get checked checkboxes and add to list
     checkboxes.forEach(element => {
       let listItem = document.createElement('li');
       if (element.checked && element.getAttribute('data-category') === category){
@@ -66,9 +69,19 @@ function populateCaseNotes(){
         listElement.appendChild(listItem);
       }
     });
+
+    contentElement.appendChild(listElement);
   });
 
-  if(TextData['escalation']){
+  //todo: handle template info
+  console.log(TemplateDropdown);
+  TemplateData = TinyMceTemplates[TemplateDropdown.value];
+  console.log(TemplateData);
+
+
+
+  //populate escalation information
+/*   if(TextData['escalation']){
     let escalationElement = document.createElement('ul');
     let escalationHeader = document.createElement('h3');
     escalationHeader.textContent = "Escalation Information";
@@ -87,54 +100,19 @@ function populateCaseNotes(){
       escalationElement.appendChild(listItem);  
     });
     contentElement.appendChild(escalationElement);
-  }
+  } */
 
   tinymce.activeEditor.setContent(contentElement.innerHTML);
-
-  const templateDropdown = document.querySelector('#template-dropdown');
-  templateDropdown.addEventListener("change", (e) => {
-    let selectedTemplateValue = TinyMceTemplates.find((element) => element.id === e.target.value);
-    mergeCaseNotesTemplate(selectedTemplateValue);
-  });
 };
 
-function mergeCaseNotesTemplate(template){
-  let templateData = {
-    issue: template.issue,
-    troubleshooting: template.troubleshooting,
-    recommended: [],
-    escalation: template.escalation,
-    additionalNotes: template.additionalNotes,
-  };
-
-  let checkboxData = {
-    issue: [],
-    troubleshooting: [],
-    recommended: [],
-    escalation: [],
-    additionalNotes: [],
-  }
-
-  checkboxes.forEach(checkbox => {
-    if(checkbox.checked){
-      checkboxData[checkbox.getAttribute('data-category')].push(checkbox.value);
-    }
-  });
-
-  let mergedText = {};
-
-  return mergedText;
-}
-
 //adds and removes checkbox values when checked or unchecked
-//todo: allow multiple checkboxes to be checked
 checkboxes.forEach(checkbox => {
   checkbox.addEventListener('click', (e) =>{
     if(e.target.checked){
-      TextData[e.target.getAttribute('data-category')].push(e.target.value);
+      checkboxData[e.target.getAttribute('data-category')].push(e.target.value);
     } else{
-      let index = TextData[e.target.getAttribute('data-category')].indexOf(e.target.value)
-      TextData[e.target.getAttribute('data-category')].splice(index,1);
+      let index = checkboxData[e.target.getAttribute('data-category')].indexOf(e.target.value)
+      checkboxData[e.target.getAttribute('data-category')].splice(index,1);
     }
     populateCaseNotes();
   })
