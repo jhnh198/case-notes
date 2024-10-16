@@ -4,14 +4,6 @@ tinymce.init({
   selector: '#case-notes-text-field',
 });
 
-let TemplateData = {
-  issue: [],
-  troubleshooting: [],
-  recommended: [],
-  escalation: [],
-  additionalNotes: [],
-}
-
 let checkboxData = {
   issue: [],
   troubleshooting: [],
@@ -21,7 +13,7 @@ let checkboxData = {
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const copyButton = document.querySelector('#copy-icon');
 const copyNotification = document.querySelector('#content-copied-notification');
-const TemplateDropdown = document.querySelector('#template-dropdown');
+const templateDropdown = document.querySelector('#template-dropdown');
 
 //get user info
 const firstNameInput = document.querySelector("#first-name-input");
@@ -43,7 +35,31 @@ copyButton.addEventListener("click", () => {
   }, 2000);
 });
 
-function populateCaseNotes(){
+//adds and removes checkbox values when checked or unchecked
+checkboxes.forEach(checkbox => {
+  checkbox.addEventListener('click', (e) =>{
+    //could add a separate checkbox gathering function
+    populateCaseNotes(false);
+  })
+});
+
+const commaInsertionInputText = document.querySelector("#comma-insertion-input-text");
+let commaInsertionOutputArea = document.querySelector("#comma-insertion-output-area");
+let commaInsertionButton = document.querySelector("#comma-insertion-button");
+
+commaInsertionButton.addEventListener('click', () =>{
+  //to clear commas that are already present and avoid adding additional
+  let commaFilter = commaInsertionInputText.value.replace(',', ' ');
+  let filterReg = /(6|7|11|12|20|23)\d{6}/g
+
+  commaInsertionOutputArea.value = commaFilter.value.match(filterReg).join();
+});
+
+templateDropdown.addEventListener('change', () => {
+  populateCaseNotes(true);
+});
+
+function populateCaseNotes(isTemplate){
   let contentElement = document.createElement('div');
 
   let NoteData = {
@@ -54,12 +70,24 @@ function populateCaseNotes(){
     additionalNotes: [],
   }
 
+  //todo: need to get info rather than returning elements
+  if(isTemplate){
+    let templateData = handleTemplateData();
+  }
+
+  //handle checkbox data  
   Object.keys(NoteData).forEach(category => {
     //set header for each category
     let listElement = document.createElement('ul');
     let categoryElement = document.createElement('h3');
     categoryElement.textContent = category.toLocaleUpperCase();
     contentElement.appendChild(categoryElement);
+
+    if(category !== 'escalation'){
+      Object.keys(templateData[category]).forEach(item => {
+        console.log(templateData[category][item]);
+      });
+    };
 
     //get checked checkboxes and add to list
     checkboxes.forEach(element => {
@@ -73,15 +101,8 @@ function populateCaseNotes(){
     contentElement.appendChild(listElement);
   });
 
-  //todo: handle template info
-  console.log(TemplateDropdown);
-  TemplateData = TinyMceTemplates[TemplateDropdown.value];
-  console.log(TemplateData);
 
-
-
-  //populate escalation information
-/*   if(TextData['escalation']){
+   if(templateData['escalation']){
     let escalationElement = document.createElement('ul');
     let escalationHeader = document.createElement('h3');
     escalationHeader.textContent = "Escalation Information";
@@ -100,32 +121,26 @@ function populateCaseNotes(){
       escalationElement.appendChild(listItem);  
     });
     contentElement.appendChild(escalationElement);
-  } */
+  }
 
   tinymce.activeEditor.setContent(contentElement.innerHTML);
 };
 
-//adds and removes checkbox values when checked or unchecked
-checkboxes.forEach(checkbox => {
-  checkbox.addEventListener('click', (e) =>{
-    if(e.target.checked){
-      checkboxData[e.target.getAttribute('data-category')].push(e.target.value);
-    } else{
-      let index = checkboxData[e.target.getAttribute('data-category')].indexOf(e.target.value)
-      checkboxData[e.target.getAttribute('data-category')].splice(index,1);
-    }
-    populateCaseNotes();
-  })
-});
+//need to get info rather than returning elements
+function handleTemplateData(){
+  //get template data
+  let templateData = TinyMceTemplates.find(template => template.id === templateDropdown.value);
 
-const commaInsertionInputText = document.querySelector("#comma-insertion-input-text");
-let commaInsertionOutputArea = document.querySelector("#comma-insertion-output-area");
-let commaInsertionButton = document.querySelector("#comma-insertion-button");
+  let templateContent = document.createElement('div');
+  let templateIssueHeader = document.createElement('h2');
+  templateIssueHeader.textContent = templateData.issue;
 
-commaInsertionButton.addEventListener('click', () =>{
-  //to clear commas that are already present and avoid adding additional
-  let commaFilter = commaInsertionInputText.value.replace(',', ' ');
-  let filterReg = /(6|7|11|12|20|23)\d{6}/g
+  let templateTroubleshootingList = document.createElement('ul');
+  template.troubleshooting.forEach(item => {
+    let listItem = document.createElement('li');
+    listItem.textContent = item;
+    templateTroubleshootingList.appendChild(listItem);
+  });
 
-  commaInsertionOutputArea.value = commaFilter.value.match(filterReg).join();
-});
+  return templateContent;
+}
