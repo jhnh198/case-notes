@@ -72,7 +72,11 @@ function populateCaseNotes(isTemplate){
 
   //todo: need to get info rather than returning elements
   if(isTemplate){
-    let templateData = handleTemplateData();
+    let templateData = TinyMceTemplates.getTemplateData(templateDropdown.value);
+    NoteData.issue = issue.push(templateData.issue);
+    templateData.troubleshooting.forEach(item => {
+      NoteData.troubleshooting.push(item);
+    });
   }
 
   //handle checkbox data  
@@ -125,22 +129,3 @@ function populateCaseNotes(isTemplate){
 
   tinymce.activeEditor.setContent(contentElement.innerHTML);
 };
-
-//need to get info rather than returning elements
-function handleTemplateData(){
-  //get template data
-  let templateData = TinyMceTemplates.find(template => template.id === templateDropdown.value);
-
-  let templateContent = document.createElement('div');
-  let templateIssueHeader = document.createElement('h2');
-  templateIssueHeader.textContent = templateData.issue;
-
-  let templateTroubleshootingList = document.createElement('ul');
-  template.troubleshooting.forEach(item => {
-    let listItem = document.createElement('li');
-    listItem.textContent = item;
-    templateTroubleshootingList.appendChild(listItem);
-  });
-
-  return templateContent;
-}
