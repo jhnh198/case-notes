@@ -105,7 +105,6 @@ function populateCaseNotes(isTemplate){
     contentElement.appendChild(listElement);
   });
 
-
    if(templateData['escalation']){
     let escalationElement = document.createElement('ul');
     let escalationHeader = document.createElement('h3');
