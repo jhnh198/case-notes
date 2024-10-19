@@ -95,10 +95,8 @@ function populateCaseNotes(isTemplate){
 
     //get checked checkboxes and add to list
     checkboxes.forEach(element => {
-      let listItem = document.createElement('li');
       if (element.checked && element.getAttribute('data-category') === category){
-        listItem.textContent = element.value;
-        listElement.appendChild(listItem);
+        NoteData[category].push(element.value);
       }
     });
 
