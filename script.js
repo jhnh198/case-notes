@@ -70,10 +70,10 @@ function populateCaseNotes(isTemplate){
     additionalNotes: [],
   }
 
-  //todo: need to get info rather than returning elements
   if(isTemplate){
-    let templateData = TinyMceTemplates.getTemplateData(templateDropdown.value);
-    NoteData.issue = issue.push(templateData.issue);
+    let templateData = TinyMceTemplates.find(template => template.id === templateDropdown.value);
+    console.log(templateData);
+    NoteData.issue.push(templateData.issue);
     templateData.troubleshooting.forEach(item => {
       NoteData.troubleshooting.push(item);
     });
@@ -81,48 +81,28 @@ function populateCaseNotes(isTemplate){
 
   //handle checkbox data  
   Object.keys(NoteData).forEach(category => {
-    //set header for each category
-    let listElement = document.createElement('ul');
-    let categoryElement = document.createElement('h3');
-    categoryElement.textContent = category.toLocaleUpperCase();
-    contentElement.appendChild(categoryElement);
-
-    if(category !== 'escalation'){
-      Object.keys(templateData[category]).forEach(item => {
-        console.log(templateData[category][item]);
-      });
-    };
-
     //get checked checkboxes and add to list
     checkboxes.forEach(element => {
       if (element.checked && element.getAttribute('data-category') === category){
         NoteData[category].push(element.value);
       }
     });
+  });
+
+  Object.keys(NoteData).forEach(category => {
+    let listElement = document.createElement('ul');
+    let categoryElement = document.createElement('h3');
+    categoryElement.textContent = category.toLocaleUpperCase();
+    contentElement.appendChild(categoryElement);
+
+    NoteData[category].forEach(item => {
+      let listItem = document.createElement('li');
+      listItem.textContent = item;
+      listElement.appendChild(listItem);
+    });
 
     contentElement.appendChild(listElement);
   });
 
-   if(templateData['escalation']){
-    let escalationElement = document.createElement('ul');
-    let escalationHeader = document.createElement('h3');
-    escalationHeader.textContent = "Escalation Information";
-    escalationElement.appendChild(escalationHeader);
-
-    let escalationInfo = {      
-      CID: `CID: ${companyIdInput.value}`,
-      ContactName: `Contact Name: ${firstNameInput.value} ${lastNameInput.value}`,
-      ContactPhone: `Contact Phone: ${phoneNumberInput.value}`,
-      TruckNumber: `Truck Number: ${truckNumberInput.value}`,
-    }
-
-    Object.keys(escalationInfo).forEach(key => { 
-      let listItem = document.createElement('li');
-      listItem.textContent = escalationInfo[key];
-      escalationElement.appendChild(listItem);  
-    });
-    contentElement.appendChild(escalationElement);
-  }
-
-  tinymce.activeEditor.setContent(contentElement.innerHTML);
+    tinymce.activeEditor.setContent(contentElement.innerHTML);
 };
