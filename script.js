@@ -4,12 +4,6 @@ tinymce.init({
   selector: '#case-notes-text-field',
 });
 
-let checkboxData = {
-  issue: [],
-  troubleshooting: [],
-  recommended: [],
-};
-
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const copyButton = document.querySelector('#copy-icon');
 const copyNotification = document.querySelector('#content-copied-notification');
@@ -61,6 +55,7 @@ templateDropdown.addEventListener('change', () => {
 
 function populateCaseNotes(isTemplate){
   let contentElement = document.createElement('div');
+  let escalation = false;
 
   let NoteData = {
     issue: [],
@@ -72,7 +67,7 @@ function populateCaseNotes(isTemplate){
 
   if(isTemplate){
     let templateData = TinyMceTemplates.find(template => template.id === templateDropdown.value);
-    console.log(templateData);
+    escalation = templateData.escalation;
     NoteData.issue.push(templateData.issue);
     templateData.troubleshooting.forEach(item => {
       NoteData.troubleshooting.push(item);
@@ -88,6 +83,14 @@ function populateCaseNotes(isTemplate){
       }
     });
   });
+
+  //get user info
+  if(isTemplate && escalation){
+    NoteData.escalation.push(`Contact: ${firstNameInput.value} ${lastNameInput.value}`);
+    NoteData.escalation.push(`Company ID: ${companyIdInput.value}`);
+    NoteData.escalation.push(`Truck Number: ${truckNumberInput.value}`);
+    NoteData.escalation.push(`Phone Number: ${phoneNumberInput.value}`);
+  }
 
   Object.keys(NoteData).forEach(category => {
     let listElement = document.createElement('ul');
