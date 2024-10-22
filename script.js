@@ -1,8 +1,16 @@
 import { TinyMceTemplates } from "./tinymce-templates/tinymce-templates.js";
 
-tinymce.init({
+let caseNotes = tinymce.init({
   selector: '#case-notes-text-field',
 });
+
+let additionalNotes = tinymce.init({
+  selector: '#case-notes-additional-notes',
+  toolbar: 'undo redo | blocks | ' +
+  'bold italic backcolor | alignleft aligncenter ' +
+  'alignright alignjustify | bullist numlist outdent indent | ' +
+  'removeformat | help',
+})
 
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const copyButton = document.querySelector('#copy-icon');
@@ -76,7 +84,6 @@ function populateCaseNotes(isTemplate){
 
   //handle checkbox data  
   Object.keys(NoteData).forEach(category => {
-    //get checked checkboxes and add to list
     checkboxes.forEach(element => {
       if (element.checked && element.getAttribute('data-category') === category){
         NoteData[category].push(element.value);
