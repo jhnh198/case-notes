@@ -57,6 +57,11 @@ commaInsertionButton.addEventListener('click', () =>{
   commaInsertionOutputArea.value = commaFilter.value.match(filterReg).join();
 });
 
+tinymce.activeEditor.on('change', (e) => {
+  let content = tinymce.activeEditor.getContent();
+  console.log(content);
+});
+
 templateDropdown.addEventListener('change', () => {
   populateCaseNotes(true);
 });
