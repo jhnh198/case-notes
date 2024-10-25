@@ -1,16 +1,33 @@
 import { TinyMceTemplates } from "./tinymce-templates/tinymce-templates.js";
 
-let caseNotes = tinymce.init({
-  selector: '#case-notes-text-field',
-});
 
-let additionalNotes = tinymce.init({
+
+const caseNotes = {
+  selector: '.tinymce-heading',
+  menubar: false,
+  inline: true,
+  plugins: [
+    'lists',
+    'powerpaste',
+    'autolink'
+  ],
+  toolbar: 'undo redo | bold italic underline',
+  valid_elements: 'strong,em,span[style],a[href]',
+  valid_styles: {
+    '*': 'font-size,font-family,color,text-decoration,text-align'
+  },
+}
+
+const additionalNotes = {
   selector: '#case-notes-additional-notes',
   toolbar: 'undo redo | blocks | ' +
   'bold italic backcolor | alignleft aligncenter ' +
   'alignright alignjustify | bullist numlist outdent indent | ' +
   'removeformat | help',
-})
+};
+
+tinymce.init(caseNotes);
+tinymce.init(additionalNotes);
 
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const copyButton = document.querySelector('#copy-icon');
