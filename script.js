@@ -1,18 +1,13 @@
 import { TinyMceTemplates } from "./tinymce-templates/tinymce-templates.js";
 
-
-
 const caseNotes = {
-  selector: '.tinymce-heading',
+  selector: '#case-notes-text-field',
   menubar: false,
-  inline: true,
   plugins: [
     'lists',
-    'powerpaste',
     'autolink'
   ],
   toolbar: 'undo redo | bold italic underline',
-  valid_elements: 'strong,em,span[style],a[href]',
   valid_styles: {
     '*': 'font-size,font-family,color,text-decoration,text-align'
   },
