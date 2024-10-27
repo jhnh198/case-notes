@@ -1,17 +1,18 @@
 import { TinyMceTemplates } from "./tinymce-templates/tinymce-templates.js";
 
-const caseNotes = {
+/* const caseNotes = {
   selector: '#case-notes-text-field',
-  menubar: false,
+  editable_root: false,
+  inline: true,
   plugins: [
     'lists',
     'autolink'
   ],
-  toolbar: 'undo redo | bold italic underline',
+  toolbar: '',
   valid_styles: {
     '*': 'font-size,font-family,color,text-decoration,text-align'
   },
-}
+} */
 
 const additionalNotes = {
   selector: '#case-notes-additional-notes',
@@ -21,7 +22,7 @@ const additionalNotes = {
   'removeformat | help',
 };
 
-tinymce.init(caseNotes);
+//tinymce.init(caseNotes);
 tinymce.init(additionalNotes);
 
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
@@ -69,10 +70,10 @@ commaInsertionButton.addEventListener('click', () =>{
   commaInsertionOutputArea.value = commaFilter.value.match(filterReg).join();
 });
 
-tinymce.activeEditor.on('change', (e) => {
+/* tinymce.activeEditor.on('change', (e) => {
   let content = tinymce.activeEditor.getContent();
   console.log(content);
-});
+}); */
 
 templateDropdown.addEventListener('change', () => {
   populateCaseNotes(true);
@@ -131,5 +132,5 @@ function populateCaseNotes(isTemplate){
     contentElement.appendChild(listElement);
   });
 
-    tinymce.activeEditor.setContent(contentElement.innerHTML);
+  tinymce.activeEditor.setContent(contentElement.innerHTML);
 };
