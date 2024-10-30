@@ -1,6 +1,6 @@
 import { TinyMceTemplates } from "./tinymce-templates/tinymce-templates.js";
 
- const caseNotes = {
+/*  const caseNotes = {
   selector: '#case-notes-text-field',
   editable_root: false,
   inline: true,
@@ -12,7 +12,7 @@ import { TinyMceTemplates } from "./tinymce-templates/tinymce-templates.js";
   valid_styles: {
     '*': 'font-size,font-family,color,text-decoration,text-align'
   },
-}
+} */
 
 const additionalNotes = {
   selector: '#case-notes-additional-notes',
@@ -22,7 +22,7 @@ const additionalNotes = {
   'removeformat | help',
 };
 
-tinymce.init(caseNotes);
+//tinymce.init(caseNotes);
 tinymce.init(additionalNotes);
 
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
@@ -132,5 +132,5 @@ function populateCaseNotes(isTemplate){
     contentElement.appendChild(listElement);
   });
 
-  tinymce.activeEditor.setContent(contentElement.innerHTML);
+  tinymce.activeEditor.setContent(contentElement);
 };
