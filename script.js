@@ -16,10 +16,7 @@ import { TinyMceTemplates } from "./tinymce-templates/tinymce-templates.js";
 
 const additionalNotes = {
   selector: '#case-notes-additional-notes',
-  toolbar: 'undo redo | blocks | ' +
-  'bold italic backcolor | alignleft aligncenter ' +
-  'alignright alignjustify | bullist numlist outdent indent | ' +
-  'removeformat | help',
+  toolbar: 'undo redo | blocks | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
 };
 
 //tinymce.init(caseNotes);
