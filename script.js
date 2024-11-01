@@ -8,6 +8,11 @@ const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const copyButton = document.querySelector('#copy-icon');
 const copyNotification = document.querySelector('#content-copied-notification');
 const templateDropdown = document.querySelector('#template-dropdown');
+const additionalNotesTextArea = document.querySelector('#additional-notes-text-area');
+
+additionalNotesTextArea.addEventListener('input', (e) => {
+  
+});
 
 //get user info
 const firstNameInput = document.querySelector("#first-name-input");
