@@ -8,10 +8,10 @@ const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const copyButton = document.querySelector('#copy-icon');
 const copyNotification = document.querySelector('#content-copied-notification');
 const templateDropdown = document.querySelector('#template-dropdown');
-const additionalNotesTextArea = document.querySelector('#additional-notes-text-area');
+const additionalNotesTextArea = document.querySelector('#additional-notes-text-field');
 
 additionalNotesTextArea.addEventListener('input', (e) => {
-  
+  populateCaseNotes(false);
 });
 
 //get user info
@@ -67,7 +67,7 @@ function populateCaseNotes(isTemplate){
     troubleshooting: [],
     recommended: [],
     escalation: [],
-    additionalNotes: [],
+    additionalNotes: [additionalNotesTextArea.value],
   }
 
   if(isTemplate){
