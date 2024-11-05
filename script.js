@@ -10,10 +10,6 @@ const copyNotification = document.querySelector('#content-copied-notification');
 const templateDropdown = document.querySelector('#template-dropdown');
 const additionalNotesTextArea = document.querySelector('#additional-notes-text-field');
 
-additionalNotesTextArea.addEventListener('input', (e) => {
-  populateCaseNotes(false);
-});
-
 //get user info
 const firstNameInput = document.querySelector("#first-name-input");
 const lastNameInput = document.querySelector("#last-name-input");
@@ -67,7 +63,6 @@ function populateCaseNotes(isTemplate){
     troubleshooting: [],
     recommended: [],
     escalation: [],
-    additionalNotes: [additionalNotesTextArea.value],
   }
 
   if(isTemplate){
