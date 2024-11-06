@@ -159,6 +159,10 @@ h2{
   top: 8%;
 }
 
+#additional-notes-text-field{
+  border: #002d5b 1px solid;
+}
+
 .show {
   visibility: visible;
   -webkit-animation: fadeIn 1s;

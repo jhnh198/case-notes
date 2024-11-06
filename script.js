@@ -63,6 +63,7 @@ function populateCaseNotes(isTemplate){
     troubleshooting: [],
     recommended: [],
     escalation: [],
+    additional: [additionalNotesTextArea.value]
   }
 
   if(isTemplate){
@@ -107,5 +108,6 @@ function populateCaseNotes(isTemplate){
     contentElement.appendChild(listElement);
   });
 
-    tinymce.activeEditor.setContent(contentElement.innerHTML);
+    tinymce.activeEditor.setContent(contentElement.innerHTML);    
+    
 };
