@@ -63,7 +63,7 @@ function populateCaseNotes(isTemplate){
     troubleshooting: [],
     recommended: [],
     escalation: [],
-    additional: [additionalNotesTextArea.value]
+    additional: [document.querySelector('#additional-notes-text-field').value]
   }
 
   if(isTemplate){
@@ -109,5 +109,4 @@ function populateCaseNotes(isTemplate){
   });
 
     tinymce.activeEditor.setContent(contentElement.innerHTML);    
-    
 };
