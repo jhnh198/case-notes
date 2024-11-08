@@ -4,6 +4,7 @@ tinymce.init({
   selector: '#case-notes-text-field',
 });
 
+
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const copyButton = document.querySelector('#copy-icon');
 const copyNotification = document.querySelector('#content-copied-notification');
