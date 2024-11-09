@@ -1,9 +1,8 @@
 import { TinyMceTemplates } from "./tinymce-templates/tinymce-templates.js";
 
 tinymce.init({
-  selector: '#case-notes-text-field',
+  selector: '#additional-notes-text-field',
 });
-
 
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const copyButton = document.querySelector('#copy-icon');
