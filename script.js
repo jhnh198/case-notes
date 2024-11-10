@@ -9,6 +9,8 @@ const copyButton = document.querySelector('#copy-icon');
 const copyNotification = document.querySelector('#content-copied-notification');
 const templateDropdown = document.querySelector('#template-dropdown');
 const additionalNotesTextArea = document.querySelector('#additional-notes-text-field');
+const caseNotesDiv = document.querySelector('#case-notes-div');
+let useTemplate = false;
 
 //get user info
 const firstNameInput = document.querySelector("#first-name-input");
@@ -30,11 +32,16 @@ copyButton.addEventListener("click", () => {
   }, 2000);
 });
 
+//todo: remove tags from text
+tinymce.activeEditor.on('change', () => {
+  populateCaseNotes(useTemplate);
+});
+
 //adds and removes checkbox values when checked or unchecked
 checkboxes.forEach(checkbox => {
   checkbox.addEventListener('click', (e) =>{
     //could add a separate checkbox gathering function
-    populateCaseNotes(false);
+    populateCaseNotes(useTemplate);
   })
 });
 
@@ -51,7 +58,8 @@ commaInsertionButton.addEventListener('click', () =>{
 });
 
 templateDropdown.addEventListener('change', () => {
-  populateCaseNotes(true);
+  useTemplate = true;
+  populateCaseNotes(useTemplate);
 });
 
 function populateCaseNotes(isTemplate){
@@ -63,7 +71,7 @@ function populateCaseNotes(isTemplate){
     troubleshooting: [],
     recommended: [],
     escalation: [],
-    additional: [document.querySelector('#additional-notes-text-field').value]
+    additional: [additionalNotesTextArea.value]
   }
 
   if(isTemplate){
@@ -108,5 +116,5 @@ function populateCaseNotes(isTemplate){
     contentElement.appendChild(listElement);
   });
 
-    tinymce.activeEditor.setContent(contentElement.innerHTML);    
+  caseNotesDiv.innerHTML = contentElement.innerHTML;
 };
