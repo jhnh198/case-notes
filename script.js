@@ -33,7 +33,8 @@ copyButton.addEventListener("click", () => {
 });
 
 //todo: remove tags from text
-tinymce.activeEditor.on('change', () => {
+tinymce.get('additional-notes-text-field').on('change', () => {
+  console.log(tinymce.get('additional-notes-text-field'));
   populateCaseNotes(useTemplate);
 });
 
