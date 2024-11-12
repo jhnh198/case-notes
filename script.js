@@ -34,7 +34,7 @@ copyButton.addEventListener("click", () => {
 
 //todo: remove tags from text
 tinymce.get('additional-notes-text-field').on('change', () => {
-  console.log(tinymce.get('additional-notes-text-field'));
+  console.log(tinymce.get('additional-notes-text-field').getContent());
   populateCaseNotes(useTemplate);
 });
 
@@ -72,7 +72,7 @@ function populateCaseNotes(isTemplate){
     troubleshooting: [],
     recommended: [],
     escalation: [],
-    additional: [additionalNotesTextArea.value]
+    additional: [tinymce.get('additional-notes-text-field').getContent()]
   }
 
   if(isTemplate){
