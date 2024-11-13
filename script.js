@@ -63,6 +63,14 @@ templateDropdown.addEventListener('change', () => {
   populateCaseNotes(useTemplate);
 });
 
+function convertTaggedContentToList(taggedContent){
+  let list = taggedContent.split('<li>');
+  list = list.map(item => {
+    return item.replace('</li>', '');
+  });
+  return list;
+}
+
 function populateCaseNotes(isTemplate){
   let contentElement = document.createElement('div');
   let escalation = false;
