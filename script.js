@@ -4,6 +4,12 @@ tinymce.init({
   selector: '#additional-notes-text-field',
 });
 
+tinymce.init({
+  selector: '#case-notes-div',
+  readonly: false,
+  plugins: 'lists',
+});
+
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const copyButton = document.querySelector('#copy-icon');
 const copyNotification = document.querySelector('#content-copied-notification');
@@ -36,6 +42,11 @@ copyButton.addEventListener("click", () => {
 tinymce.get('additional-notes-text-field').on('change', () => {
   console.log(tinymce.get('additional-notes-text-field').getContent());
   populateCaseNotes(useTemplate);
+});
+
+tinymce.get('case-notes-div').on('change', () => {
+  const textPosition = caseNotesDiv.selectionStart;
+  console.log(textPosition);
 });
 
 //adds and removes checkbox values when checked or unchecked
