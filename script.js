@@ -10,6 +10,23 @@ tinymce.init({
   plugins: 'lists',
 });
 
+let testTextTemplateModel = {
+  issue: ['Issue: '],
+  troubleshooting: ['Troubleshooting:'],
+  recommended: ['Recommended: '],
+  escalation: ['Escalation: '],
+  additional: ['Additional Notes: '],
+}
+
+let testTemplateTextValues = {
+  typedPosition: 0,
+  selectedPosition: 0,
+  selectedText: '',
+  selectedTextLength: 0,
+  allTextContentBeforeType: '',
+  allTextContentAfterType: '',
+}
+
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const copyButton = document.querySelector('#copy-icon');
 const copyNotification = document.querySelector('#content-copied-notification');
@@ -27,6 +44,12 @@ const truckNumberInput = document.querySelector("#truck-number-input");
 const phoneNumberInput = document.querySelector("#phone-number-input");
 //const dsnInput = document.querySelector("#dsn-input");
 
+const testText = document.querySelector("#test-text");
+
+testText.addEventListener("keydown", (e) => {
+  console.log(testText.selectionStart);
+});
+
 copyButton.addEventListener("click", () => {
   tinymce.execCommand('selectAll');
   tinymce.execCommand('copy');
@@ -40,13 +63,11 @@ copyButton.addEventListener("click", () => {
 
 //todo: remove tags from text
 tinymce.get('additional-notes-text-field').on('change', () => {
-  console.log(tinymce.get('additional-notes-text-field').getContent());
-  populateCaseNotes(useTemplate);
+  //populateCaseNotes(useTemplate);
 });
 
-tinymce.get('case-notes-div').on('change', () => {
-  const textPosition = caseNotesDiv.selectionStart;
-  console.log(textPosition);
+tinymce.get('case-notes-div').on('keyup', () => {
+  console.log(caseNotesDiv.selectionStart);
 });
 
 //adds and removes checkbox values when checked or unchecked
