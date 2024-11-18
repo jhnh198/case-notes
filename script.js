@@ -76,7 +76,18 @@ checkboxes.forEach(checkbox => {
     //could add a separate checkbox gathering function
     populateCaseNotes(useTemplate);
   })
+  addCheckboxValueToTestTemplate();
+  
 });
+
+function addCheckboxValueToTestTemplate(){
+  let checkboxValue = checkboxes.forEach(checkbox => {
+    if(checkbox.checked){
+      return checkbox.value;
+    }
+  });
+  console.log(checkboxValue);
+}
 
 const commaInsertionInputText = document.querySelector("#comma-insertion-input-text");
 let commaInsertionOutputArea = document.querySelector("#comma-insertion-output-area");
