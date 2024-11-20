@@ -76,17 +76,21 @@ checkboxes.forEach(checkbox => {
     //could add a separate checkbox gathering function
     populateCaseNotes(useTemplate);
   })
-  addCheckboxValueToTestTemplate();
+  addCheckboxValueToTestTemplate(e.target);
   
 });
 
-function addCheckboxValueToTestTemplate(){
-  let checkboxValue = checkboxes.forEach(checkbox => {
-    if(checkbox.checked){
-      return checkbox.value;
-    }
+function addCheckboxValueToTestTemplate(e){
+  let category = e.getAttribute('data-category');
+  let value = e.value;
+  testTextTemplateModel[category];
+
+  testTextTemplateModel.keys.forEach(category => {
+    if(e.getAttribute('data-category') === category){
+      testTextTemplateModel[category].push(e.value);
+    }    
   });
-  console.log(checkboxValue);
+
 }
 
 const commaInsertionInputText = document.querySelector("#comma-insertion-input-text");
