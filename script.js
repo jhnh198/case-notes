@@ -83,15 +83,31 @@ checkboxes.forEach(checkbox => {
 function addCheckboxValueToTestTemplate(e){
   let category = e.getAttribute('data-category');
   let value = e.value;
-  testTextTemplateModel[category];
-
-  testTextTemplateModel.keys.forEach(category => {
-    if(e.getAttribute('data-category') === category){
-      testTextTemplateModel[category].push(e.value);
-    }    
-  });
-
+  let categoryArray = testTextTemplateModel[category];
+  categoryArray.push(value);
+  testTextTemplateModel[category] = categoryArray;
 }
+
+/*
+
+how to insert text at cursor position in a contenteditable div
+https://stackoverflow.com/questions/1064089/inserting-a-text-where-cursor-is-using-javascript-jquery
+
+steps: 
+1. get cursor position
+2. insert text at cursor position
+3. update cursor position
+
+function insertTextAtCursor(text){
+  let selection = window.getSelection();
+  let range = selection.getRangeAt(0);
+  range.deleteContents();
+  range.insertNode(document.createTextNode(text));
+}
+
+
+
+*/
 
 const commaInsertionInputText = document.querySelector("#comma-insertion-input-text");
 let commaInsertionOutputArea = document.querySelector("#comma-insertion-output-area");
