@@ -72,21 +72,17 @@ tinymce.get('case-notes-div').on('keyup', () => {
 
 //adds and removes checkbox values when checked or unchecked
 checkboxes.forEach(checkbox => {
-  checkbox.addEventListener('click', (e) =>{
+  checkbox.addEventListener('click', (e) => {
     //could add a separate checkbox gathering function
-    populateCaseNotes(useTemplate);
-  })
-  addCheckboxValueToTestTemplate(e.target);
-  
-});
+    //populateCaseNotes(useTemplate);
 
-function addCheckboxValueToTestTemplate(e){
-  let category = e.getAttribute('data-category');
-  let value = e.value;
-  let categoryArray = testTextTemplateModel[category];
-  categoryArray.push(value);
-  testTextTemplateModel[category] = categoryArray;
-}
+    let category = e.target.getAttribute('data-category');
+    let value = e.target.value;
+    let categoryArray = testTextTemplateModel[category];
+    categoryArray.push(value);
+    testTextTemplateModel[category] = categoryArray;
+  })
+});
 
 /*
 
@@ -95,7 +91,7 @@ https://stackoverflow.com/questions/1064089/inserting-a-text-where-cursor-is-usi
 
 steps: 
 1. get cursor position
-2. insert text at cursor position
+2. insert text at cursor position in template
 3. update cursor position
 
 function insertTextAtCursor(text){
@@ -104,9 +100,6 @@ function insertTextAtCursor(text){
   range.deleteContents();
   range.insertNode(document.createTextNode(text));
 }
-
-
-
 */
 
 const commaInsertionInputText = document.querySelector("#comma-insertion-input-text");
