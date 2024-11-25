@@ -66,8 +66,10 @@ tinymce.get('additional-notes-text-field').on('change', () => {
   //populateCaseNotes(useTemplate);
 });
 
-tinymce.get('case-notes-div').on('keyup', () => {
+tinymce.get('case-notes-div').on('keyup', (e) => {
   console.log(caseNotesDiv.selectionStart);
+  let text = e.target.value;
+  console.log(text);
 });
 
 //adds and removes checkbox values when checked or unchecked
