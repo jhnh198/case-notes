@@ -4,34 +4,17 @@ tinymce.init({
   selector: '#additional-notes-text-field',
 });
 
+//todo: trim the controls since this is readonly
 tinymce.init({
   selector: '#case-notes-div',
-  readonly: false,
+  readonly: true,
   plugins: 'lists',
 });
-
-let testTextTemplateModel = {
-  issue: ['Issue: '],
-  troubleshooting: ['Troubleshooting:'],
-  recommended: ['Recommended: '],
-  escalation: ['Escalation: '],
-  additional: ['Additional Notes: '],
-}
-
-let testTemplateTextValues = {
-  typedPosition: 0,
-  selectedPosition: 0,
-  selectedText: '',
-  selectedTextLength: 0,
-  allTextContentBeforeType: '',
-  allTextContentAfterType: '',
-}
 
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const copyButton = document.querySelector('#copy-icon');
 const copyNotification = document.querySelector('#content-copied-notification');
 const templateDropdown = document.querySelector('#template-dropdown');
-const additionalNotesTextArea = document.querySelector('#additional-notes-text-field');
 const caseNotesDiv = document.querySelector('#case-notes-div');
 let useTemplate = false;
 
@@ -44,12 +27,6 @@ const truckNumberInput = document.querySelector("#truck-number-input");
 const phoneNumberInput = document.querySelector("#phone-number-input");
 //const dsnInput = document.querySelector("#dsn-input");
 
-const testText = document.querySelector("#test-text");
-
-testText.addEventListener("keydown", (e) => {
-  console.log(testText.selectionStart);
-});
-
 copyButton.addEventListener("click", () => {
   tinymce.execCommand('selectAll');
   tinymce.execCommand('copy');
@@ -61,48 +38,16 @@ copyButton.addEventListener("click", () => {
   }, 2000);
 });
 
-//todo: remove tags from text
 tinymce.get('additional-notes-text-field').on('change', () => {
-  //populateCaseNotes(useTemplate);
-});
-
-tinymce.get('case-notes-div').on('keyup', (e) => {
-  console.log(caseNotesDiv.selectionStart);
-  let text = e.target.value;
-  console.log(text);
+  populateCaseNotes(useTemplate);
 });
 
 //adds and removes checkbox values when checked or unchecked
 checkboxes.forEach(checkbox => {
-  checkbox.addEventListener('click', (e) => {
-    //could add a separate checkbox gathering function
-    //populateCaseNotes(useTemplate);
-
-    let category = e.target.getAttribute('data-category');
-    let value = e.target.value;
-    let categoryArray = testTextTemplateModel[category];
-    categoryArray.push(value);
-    testTextTemplateModel[category] = categoryArray;
+  checkbox.addEventListener('click', () => {
+    populateCaseNotes(useTemplate);
   })
 });
-
-/*
-
-how to insert text at cursor position in a contenteditable div
-https://stackoverflow.com/questions/1064089/inserting-a-text-where-cursor-is-using-javascript-jquery
-
-steps: 
-1. get cursor position
-2. insert text at cursor position in template
-3. update cursor position
-
-function insertTextAtCursor(text){
-  let selection = window.getSelection();
-  let range = selection.getRangeAt(0);
-  range.deleteContents();
-  range.insertNode(document.createTextNode(text));
-}
-*/
 
 const commaInsertionInputText = document.querySelector("#comma-insertion-input-text");
 let commaInsertionOutputArea = document.querySelector("#comma-insertion-output-area");
@@ -120,14 +65,6 @@ templateDropdown.addEventListener('change', () => {
   useTemplate = true;
   populateCaseNotes(useTemplate);
 });
-
-function convertTaggedContentToList(taggedContent){
-  let list = taggedContent.split('<li>');
-  list = list.map(item => {
-    return item.replace('</li>', '');
-  });
-  return list;
-}
 
 function populateCaseNotes(isTemplate){
   let contentElement = document.createElement('div');
