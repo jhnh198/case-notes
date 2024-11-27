@@ -1,31 +1,22 @@
 import { TinyMceTemplates } from "./tinymce-templates/tinymce-templates.js";
 
-/*  const caseNotes = {
-  selector: '#case-notes-text-field',
-  editable_root: false,
-  inline: true,
-  plugins: [
-    'lists',
-    'autolink'
-  ],
-  toolbar: '',
-  valid_styles: {
-    '*': 'font-size,font-family,color,text-decoration,text-align'
-  },
-} */
+tinymce.init({
+  selector: '#additional-notes-text-field',
+});
 
-const additionalNotes = {
-  selector: '#case-notes-additional-notes',
-  toolbar: 'undo redo | blocks | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
-};
-
-//tinymce.init(caseNotes);
-tinymce.init(additionalNotes);
+//todo: trim the controls since this is readonly
+tinymce.init({
+  selector: '#case-notes-div',
+  readonly: true,
+  plugins: 'lists',
+});
 
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const copyButton = document.querySelector('#copy-icon');
 const copyNotification = document.querySelector('#content-copied-notification');
 const templateDropdown = document.querySelector('#template-dropdown');
+//const caseNotesDiv = document.querySelector('#case-notes-div');
+let useTemplate = false;
 
 //get user info
 const firstNameInput = document.querySelector("#first-name-input");
@@ -47,11 +38,14 @@ copyButton.addEventListener("click", () => {
   }, 2000);
 });
 
+tinymce.get('additional-notes-text-field').on('change', () => {
+  populateCaseNotes(useTemplate);
+});
+
 //adds and removes checkbox values when checked or unchecked
 checkboxes.forEach(checkbox => {
-  checkbox.addEventListener('click', (e) =>{
-    //could add a separate checkbox gathering function
-    populateCaseNotes(false);
+  checkbox.addEventListener('click', () => {
+    populateCaseNotes(useTemplate);
   })
 });
 
@@ -73,20 +67,25 @@ commaInsertionButton.addEventListener('click', () =>{
 }); */
 
 templateDropdown.addEventListener('change', () => {
-  populateCaseNotes(true);
+  useTemplate = true;
+  populateCaseNotes(useTemplate);
 });
+
 
 function populateCaseNotes(isTemplate){
   let contentElement = document.createElement('div');
   let escalation = false;
 
+  //todo: remove tags from additional notes
   let NoteData = {
     issue: [],
     troubleshooting: [],
     recommended: [],
     escalation: [],
-    additionalNotes: [],
+    additional: [tinymce.get('additional-notes-text-field').getContent()]
   }
+
+  console.log(NoteData.additional);
 
   if(isTemplate){
     let templateData = TinyMceTemplates.find(template => template.id === templateDropdown.value);
@@ -129,5 +128,5 @@ function populateCaseNotes(isTemplate){
     contentElement.appendChild(listElement);
   });
 
-  tinymce.activeEditor.setContent(contentElement);
+  tinymce.get("case-notes-div").setContent(contentElement.innerHTML);
 };

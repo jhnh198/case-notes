@@ -14,15 +14,14 @@
 </head>
 
 <body>
-
-  <nav>
-    <button id="note-nav-button" onClick="showHideTools(this.id)" class="nav-button">
-      Note Builder
-    </button>
-    <button id="tools-nav-button" onClick="showHideTools(this.id)" class="nav-button">
-      Tools
-    </button>
-  </nav>
+    <nav>
+      <button id="note-nav-button" onClick="showHideTools(this.id)" class="nav-button">
+        Note Builder
+      </button>
+      <button id="tools-nav-button" onClick="showHideTools(this.id)" class="nav-button">
+        Tools
+      </button>
+    </nav>
 
   <div class="notes-main-section">
     <!-- area for case text field and issue/troubleshooting/recommended next steps -->
@@ -391,22 +390,24 @@
         </select>
       </div>
     </div>
+      <h2 class="case-notes-header"> Case Notes </h2>
+      <textarea contenteditable="true" maxlength="2000" rows="15" cols="80" id="case-notes-div"></textarea>
 
-    <h2 class="case-notes-header"> Case Notes </h2>
-    <textarea contenteditable="true" maxlength="2000" rows="15" cols="80" id="case-notes-additional-notes"></textarea>
+      <h2 class="case-notes-header"> Additional Notes </h2>
+      <textarea contenteditable="true" id="additional-notes-text-field" class="editable"></textarea>
     </section>
   </div>
 
-    <!-- add a copy button for this -->
-    <section class="tools">
-        <h2> Comma Insertion </h2>
-        <label for="comma-insertion-input-text"> Enter DSN's </label><br>
-        <textarea id="comma-insertion-input-text" rows="15" cols="60" name="comma-insertion-input-text" class="comma-insertion-input-text"></textarea><br>
-        
-        <button id="comma-insertion-button"> Insert Commas and Filter DSN </button><br>
+  <!-- add a copy button for this -->
+  <section class="tools">
+      <h2> Comma Insertion </h2>
+      <label for="comma-insertion-input-text"> Enter DSN's </label><br>
+      <textarea id="comma-insertion-input-text" rows="15" cols="60" name="comma-insertion-input-text" class="comma-insertion-input-text"></textarea><br>
+      
+      <button id="comma-insertion-button"> Insert Commas and Filter DSN </button><br>
 
-        <textarea id="comma-insertion-output-area" rows="15" cols="80" class="comma-insertion-output-area"></textarea>
-    </section>
+      <textarea id="comma-insertion-output-area" rows="15" cols="80" class="comma-insertion-output-area"></textarea>
+  </section>
 
 </body>
 </html>
