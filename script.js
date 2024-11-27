@@ -15,7 +15,7 @@ const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const copyButton = document.querySelector('#copy-icon');
 const copyNotification = document.querySelector('#content-copied-notification');
 const templateDropdown = document.querySelector('#template-dropdown');
-const caseNotesDiv = document.querySelector('#case-notes-div');
+//const caseNotesDiv = document.querySelector('#case-notes-div');
 let useTemplate = false;
 
 //get user info
@@ -66,10 +66,12 @@ templateDropdown.addEventListener('change', () => {
   populateCaseNotes(useTemplate);
 });
 
+
 function populateCaseNotes(isTemplate){
   let contentElement = document.createElement('div');
   let escalation = false;
 
+  //todo: remove tags from additional notes
   let NoteData = {
     issue: [],
     troubleshooting: [],
@@ -77,6 +79,8 @@ function populateCaseNotes(isTemplate){
     escalation: [],
     additional: [tinymce.get('additional-notes-text-field').getContent()]
   }
+
+  console.log(NoteData.additional);
 
   if(isTemplate){
     let templateData = TinyMceTemplates.find(template => template.id === templateDropdown.value);
@@ -120,5 +124,5 @@ function populateCaseNotes(isTemplate){
     contentElement.appendChild(listElement);
   });
 
-  caseNotesDiv.innerHTML = contentElement.innerHTML;
+  tinymce.get("case-notes-div").setContent(contentElement.innerHTML);
 };

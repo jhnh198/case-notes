@@ -30,3 +30,11 @@ function collapseToggle(e){
     element.style.display = "flex";
   } 
 }
+
+function regexFilter(inputText, outputArea, button, filterReg){
+  button.addEventListener('click', () =>{
+    //to clear commas that are already present and avoid adding additional
+    let commaFilter = inputText.value.replace(',', ' ');
+    outputArea.value = commaFilter.match(filterReg).join();
+  });
+}
