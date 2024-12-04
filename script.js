@@ -71,7 +71,6 @@ function populateCaseNotes(isTemplate){
   let contentElement = document.createElement('div');
   let escalation = false;
 
-  //todo: remove tags from additional notes
   let NoteData = {
     issue: [],
     troubleshooting: [],
@@ -79,8 +78,6 @@ function populateCaseNotes(isTemplate){
     escalation: [],
     additional: [tinymce.get('additional-notes-text-field').getContent()]
   }
-
-  console.log(NoteData.additional);
 
   if(isTemplate){
     let templateData = TinyMceTemplates.find(template => template.id === templateDropdown.value);
