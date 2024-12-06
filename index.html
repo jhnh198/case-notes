@@ -27,11 +27,12 @@
     <!-- area for case text field and issue/troubleshooting/recommended next steps -->
     <main class="template-builder-main">
 
-      <div class="collapse-div">
+      <div id="info-collapse-div" data-collapse="info-fields-div" class="collapse-div">
         <h2> Info </h2>
         <img z-index="1" class="collapse-button" data-collapse="info-fields-div" src="./images/chevron_down.png">
       </div>
 
+      <!-- todo: set up animation for collapse -->
       <div id="info-fields-div" class="info-fields-div">
         <div>
           <label for="first-name-input"> First Name: </label>
@@ -65,9 +66,9 @@
 
       </div>
 
-      <div class="collapse-div">
+      <div id="issue-collapse-div" class="collapse-div" data-collapse="issue-checkboxes">
         <h2> Issues </h2>
-        <img z-index="1" class="collapse-button" data-collapse="issue-checkboxes" src="./images/chevron_down.png">
+        <img z-index="1" data-collapse="issue-checkboxes" class="collapse-button" src="./images/chevron_down.png">
       </div>
 
       <div id="issue-checkboxes" class="checkbox-div">
@@ -185,7 +186,7 @@
         </div>
       </div>
 
-      <div class="collapse-div">
+      <div id="troubleshooting-collapse-div" class="collapse-div" data-collapse="troubleshooting-checkboxes" >
         <h2> Troubleshooting </h2>
         <img z-index="1" class="collapse-button" data-collapse="troubleshooting-checkboxes" src="./images/chevron_down.png">
       </div>
@@ -305,7 +306,7 @@
         </div>
       </div>
 
-      <div class="collapse-div">
+      <div id="recommended-collapse-div" class="collapse-div" data-collapse="recommended-checkboxes">
         <h2>Recommended Next Steps </h2>
         <img z-index="1" class="collapse-button" data-collapse="recommended-checkboxes" src="./images/chevron_down.png">
       </div>

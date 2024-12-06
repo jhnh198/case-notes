@@ -116,6 +116,7 @@ h2{
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+  z-index: 3;
 }
 
 
