@@ -61,6 +61,11 @@ commaInsertionButton.addEventListener('click', () =>{
   commaInsertionOutputArea.value = commaFilter.value.match(filterReg).join();
 });
 
+/* tinymce.activeEditor.on('change', (e) => {
+  let content = tinymce.activeEditor.getContent();
+  console.log(content);
+}); */
+
 templateDropdown.addEventListener('change', () => {
   useTemplate = true;
   populateCaseNotes(useTemplate);
@@ -90,7 +95,6 @@ function populateCaseNotes(isTemplate){
 
   //handle checkbox data  
   Object.keys(NoteData).forEach(category => {
-    //get checked checkboxes and add to list
     checkboxes.forEach(element => {
       if (element.checked && element.getAttribute('data-category') === category){
         NoteData[category].push(element.value);
