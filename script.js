@@ -77,7 +77,11 @@ function populateCaseNotes(isTemplate){
     troubleshooting: [],
     recommended: [],
     escalation: [],
-    additional: [tinymce.get('additional-notes-text-field').getContent()]
+    additional: []
+  }
+
+  if(tinymce.get('additional-notes-text-field').getContent() !== "") {
+    NoteData.additional.push(tinymce.get('additional-notes-text-field').getContent());
   }
 
   if(isTemplate){
@@ -108,6 +112,11 @@ function populateCaseNotes(isTemplate){
 
   Object.keys(NoteData).forEach(category => {
     let listElement = document.createElement('ul');
+
+    if(NoteData[category].length === 0){
+      return;
+    }
+    
     let categoryElement = document.createElement('h3');
     categoryElement.textContent = category.toLocaleUpperCase();
     contentElement.appendChild(categoryElement);
