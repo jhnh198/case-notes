@@ -7,6 +7,8 @@ tinymce.init({
 //todo: trim the controls since this is readonly
 tinymce.init({
   selector: '#case-notes-div',
+  toolbar: false,
+  menubar: false,
   readonly: true,
   plugins: 'lists',
 });
