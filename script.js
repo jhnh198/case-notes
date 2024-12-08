@@ -80,10 +80,6 @@ function populateCaseNotes(isTemplate){
     additional: []
   }
 
-  if(tinymce.get('additional-notes-text-field').getContent() !== "") {
-    NoteData.additional.push(tinymce.get('additional-notes-text-field').getContent());
-  }
-
   if(isTemplate){
     let templateData = TinyMceTemplates.find(template => template.id === templateDropdown.value);
     escalation = templateData.escalation;
@@ -129,6 +125,28 @@ function populateCaseNotes(isTemplate){
 
     contentElement.appendChild(listElement);
   });
+
+  let additionalNotesText = tinymce.get('additional-notes-text-field').getContent().replace(/<\/?[^>]+(>|$)/g, "");
+  let additionalNotesTextSplit = additionalNotesText.split('\n');
+ 
+  if(additionalNotesText !== ""){
+    let additionalNotesHeader = document.createElement('h3');
+    additionalNotesHeader.textContent = "Additional Notes".toLocaleUpperCase();
+    contentElement.appendChild(additionalNotesHeader);
+  }
+
+  let additionalNotesListElement = document.createElement('ul');
+
+  additionalNotesTextSplit.forEach(item => {
+    let listItem = document.createElement('li');
+    if(item === "" || item === "&nbsp;"){
+      return;
+    }
+    listItem.textContent = item;
+    additionalNotesListElement.appendChild(listItem);
+  });
+
+  contentElement.appendChild(additionalNotesListElement);
 
   tinymce.get("case-notes-div").setContent(contentElement.innerHTML);
 };
