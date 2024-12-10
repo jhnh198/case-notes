@@ -126,8 +126,9 @@ function populateCaseNotes(isTemplate){
     contentElement.appendChild(listElement);
   });
 
-  let additionalNotesText = tinymce.get('additional-notes-text-field').getContent().replace(/<\/?[^>]+(>|$)/g, "");
-  let additionalNotesTextSplit = additionalNotesText.split('\n');
+  //transform the additional notes into equivalent html for case notes field
+  let additionalNotesText = tinymce.get('additional-notes-text-field').getContent().replace(, "");
+  let additionalNotesTextSplit = additionalNotesText.split(/<\/?[^>]+(>|$)/g);
  
   if(additionalNotesText !== ""){
     let additionalNotesHeader = document.createElement('h3');
@@ -138,7 +139,7 @@ function populateCaseNotes(isTemplate){
   let additionalNotesListElement = document.createElement('ul');
 
   additionalNotesTextSplit.forEach(item => {
-    let listItem = document.createElement('li');
+    let newElement = document.createElement();
     if(item === "" || item === "&nbsp;"){
       return;
     }
