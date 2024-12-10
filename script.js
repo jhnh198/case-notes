@@ -126,7 +126,7 @@ function populateCaseNotes(isTemplate){
     contentElement.appendChild(listElement);
   });
 
-  //transform the additional notes into equivalent html for case notes field
+  //todo: take value and formatting from additional notes and put into case notes wysiwyg
   let additionalNotesText = tinymce.get('additional-notes-text-field').getContent().replace(, "");
   let additionalNotesTextSplit = additionalNotesText.split(/<\/?[^>]+(>|$)/g);
  
