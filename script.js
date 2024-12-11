@@ -72,12 +72,12 @@ function populateCaseNotes(isTemplate){
   let contentElement = document.createElement('div');
   let escalation = false;
 
+  //this handles checkbox data and escalation
   let NoteData = {
     issue: [],
     troubleshooting: [],
     recommended: [],
     escalation: [],
-    additional: []
   }
 
   if(isTemplate){
@@ -127,8 +127,8 @@ function populateCaseNotes(isTemplate){
   });
 
   //todo: take value and formatting from additional notes and put into case notes wysiwyg
-  let additionalNotesText = tinymce.get('additional-notes-text-field').getContent().replace(, "");
-  let additionalNotesTextSplit = additionalNotesText.split(/<\/?[^>]+(>|$)/g);
+  
+  /*let additionalNotesTextSplit = additionalNotesText.split(/<\/?[^>]+(>|$)/g);
  
   if(additionalNotesText !== ""){
     let additionalNotesHeader = document.createElement('h3');
@@ -146,8 +146,10 @@ function populateCaseNotes(isTemplate){
     listItem.textContent = item;
     additionalNotesListElement.appendChild(listItem);
   });
+  */
 
-  contentElement.appendChild(additionalNotesListElement);
+  //contentElement.appendChild(additionalNotesText);
+  let additionalNotesHtml = tinymce.get('additional-notes-text-field').getContent();
 
-  tinymce.get("case-notes-div").setContent(contentElement.innerHTML);
+  tinymce.get("case-notes-div").setContent(contentElement + additionalNotesHtml);
 };
