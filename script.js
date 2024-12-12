@@ -126,30 +126,13 @@ function populateCaseNotes(isTemplate){
     contentElement.appendChild(listElement);
   });
 
-  //todo: take value and formatting from additional notes and put into case notes wysiwyg
-  
-  /*let additionalNotesTextSplit = additionalNotesText.split(/<\/?[^>]+(>|$)/g);
- 
-  if(additionalNotesText !== ""){
-    let additionalNotesHeader = document.createElement('h3');
-    additionalNotesHeader.textContent = "Additional Notes".toLocaleUpperCase();
-    contentElement.appendChild(additionalNotesHeader);
-  }
+  //handle additional notes as is
+  let additionalNotesHtml = tinymce.get('additional-notes-text-field').save();
 
-  let additionalNotesListElement = document.createElement('ul');
+  //console.log(additionalNotesHtml);
 
-  additionalNotesTextSplit.forEach(item => {
-    let newElement = document.createElement();
-    if(item === "" || item === "&nbsp;"){
-      return;
-    }
-    listItem.textContent = item;
-    additionalNotesListElement.appendChild(listItem);
-  });
-  */
+  //contentElement.appendChild(additionalNotesHtml);
 
-  //contentElement.appendChild(additionalNotesText);
-  let additionalNotesHtml = tinymce.get('additional-notes-text-field').getContent();
-
-  tinymce.get("case-notes-div").setContent(contentElement + additionalNotesHtml);
+  //set content allows html to be added to case notes
+  tinymce.get("case-notes-div").setContent(contentElement.innerHTML + additionalNotesHtml);
 };
