@@ -119,7 +119,6 @@ h2{
   z-index: 3;
 }
 
-
 .collapse-button{
   height: 16px;
   margin-top: .4rem;
@@ -160,8 +159,18 @@ h2{
   top: 8%;
 }
 
+.notes-main-section{
+  display: flex;
+  padding-top: 2rem;
+  gap: 2rem;  
+}
+
 #additional-notes-text-field{
   border: #002d5b 1px solid;
+}
+
+.text-field-section{
+  width: 750px;
 }
 
 .show {

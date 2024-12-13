@@ -1,10 +1,14 @@
 import { TinyMceTemplates } from "./tinymce-templates/tinymce-templates.js";
 
+//todo: add lists to additional notes and other controls
+//todo: set width of additional notes so it does not shrink unexpectedly
 tinymce.init({
   selector: '#additional-notes-text-field',
+  plugins: 'lists',
+  menubar: 'file edit view insert format tools table tc help',
+  toolbar: "undo redo | blocks fontsizeinput | bold italic | numlist bullist | lineheight outdent indent | pagebreak anchor codesample footnotes mergetags | addtemplate inserttemplate | addcomment showcomments | ltr rtl casechange | spellcheckdialog a11ycheck",
 });
 
-//todo: trim the controls since this is readonly
 tinymce.init({
   selector: '#case-notes-div',
   toolbar: false,
@@ -129,9 +133,11 @@ function populateCaseNotes(isTemplate){
   //handle additional notes as is
   let additionalNotesHtml = tinymce.get('additional-notes-text-field').save();
 
-  //console.log(additionalNotesHtml);
-
-  //contentElement.appendChild(additionalNotesHtml);
+  if(additionalNotesHtml !== ""){
+    let additionalNotesHeader = document.createElement('h3');
+    additionalNotesHeader.textContent = "ADDITIONAL NOTES";
+    contentElement.appendChild(additionalNotesHeader);
+  }
 
   //set content allows html to be added to case notes
   tinymce.get("case-notes-div").setContent(contentElement.innerHTML + additionalNotesHtml);
