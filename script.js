@@ -1,7 +1,5 @@
 import { TinyMceTemplates } from "./tinymce-templates/tinymce-templates.js";
 
-//todo: add lists to additional notes and other controls
-//todo: set width of additional notes so it does not shrink unexpectedly
 tinymce.init({
   selector: '#additional-notes-text-field',
   plugins: 'lists',
@@ -34,6 +32,7 @@ const phoneNumberInput = document.querySelector("#phone-number-input");
 //const dsnInput = document.querySelector("#dsn-input");
 
 copyButton.addEventListener("click", () => {
+  tinymce.get('case-notes-div').focus();
   tinymce.execCommand('selectAll');
   tinymce.execCommand('copy');
   copyNotification.classList.toggle("show");
