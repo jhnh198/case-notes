@@ -111,6 +111,36 @@ h2{
 }
 
 /* add animation on collapse */
+@keyframes collapse {
+  0% {
+    max-height: 100px;
+    opacity: 1;
+  }
+  100% {
+    max-height: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes expand {
+  0% {
+    max-height: 0;
+    opacity: 0;
+  }
+  100% {
+    max-height: 100px;
+    opacity: 1;
+  }
+}
+
+.collapse-div.collapsing {
+  animation: collapse 0.5s forwards;
+}
+
+.collapse-div.expanding {
+  animation: expand 0.5s forwards;
+}
+
 .collapse-div{
   display: flex;
   flex-direction: row;
