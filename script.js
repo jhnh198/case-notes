@@ -2,11 +2,15 @@ import { TinyMceTemplates } from "./tinymce-templates/tinymce-templates.js";
 
 tinymce.init({
   selector: '#additional-notes-text-field',
+  plugins: 'lists',
+  menubar: 'file edit view insert format tools table tc help',
+  toolbar: "undo redo | blocks fontsizeinput | bold italic | numlist bullist | lineheight outdent indent | pagebreak anchor codesample footnotes mergetags | addtemplate inserttemplate | addcomment showcomments | ltr rtl casechange | spellcheckdialog a11ycheck",
 });
 
-//todo: trim the controls since this is readonly
 tinymce.init({
   selector: '#case-notes-div',
+  toolbar: false,
+  menubar: false,
   readonly: true,
   plugins: 'lists',
 });
@@ -28,6 +32,7 @@ const phoneNumberInput = document.querySelector("#phone-number-input");
 //const dsnInput = document.querySelector("#dsn-input");
 
 copyButton.addEventListener("click", () => {
+  tinymce.get('case-notes-div').focus();
   tinymce.execCommand('selectAll');
   tinymce.execCommand('copy');
   copyNotification.classList.toggle("show");
@@ -61,31 +66,22 @@ commaInsertionButton.addEventListener('click', () =>{
   commaInsertionOutputArea.value = commaFilter.value.match(filterReg).join();
 });
 
-/* tinymce.activeEditor.on('change', (e) => {
-  let content = tinymce.activeEditor.getContent();
-  console.log(content);
-}); */
-
 templateDropdown.addEventListener('change', () => {
   useTemplate = true;
   populateCaseNotes(useTemplate);
 });
 
-
 function populateCaseNotes(isTemplate){
   let contentElement = document.createElement('div');
   let escalation = false;
 
-  //todo: remove tags from additional notes
+  //this handles checkbox data and escalation
   let NoteData = {
     issue: [],
     troubleshooting: [],
     recommended: [],
     escalation: [],
-    additional: [tinymce.get('additional-notes-text-field').getContent()]
   }
-
-  console.log(NoteData.additional);
 
   if(isTemplate){
     let templateData = TinyMceTemplates.find(template => template.id === templateDropdown.value);
@@ -115,6 +111,11 @@ function populateCaseNotes(isTemplate){
 
   Object.keys(NoteData).forEach(category => {
     let listElement = document.createElement('ul');
+
+    if(NoteData[category].length === 0){
+      return;
+    }
+    
     let categoryElement = document.createElement('h3');
     categoryElement.textContent = category.toLocaleUpperCase();
     contentElement.appendChild(categoryElement);
@@ -128,5 +129,15 @@ function populateCaseNotes(isTemplate){
     contentElement.appendChild(listElement);
   });
 
-  tinymce.get("case-notes-div").setContent(contentElement.innerHTML);
+  //handle additional notes as is
+  let additionalNotesHtml = tinymce.get('additional-notes-text-field').save();
+
+  if(additionalNotesHtml !== ""){
+    let additionalNotesHeader = document.createElement('h3');
+    additionalNotesHeader.textContent = "ADDITIONAL NOTES";
+    contentElement.appendChild(additionalNotesHeader);
+  }
+
+  //set content allows html to be added to case notes
+  tinymce.get("case-notes-div").setContent(contentElement.innerHTML + additionalNotesHtml);
 };

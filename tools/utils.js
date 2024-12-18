@@ -11,22 +11,33 @@ function showHideTools(id){
   } 
 }
 
+const collapseDiv = document.querySelectorAll(".collapse-div");
+
+collapseDiv.forEach(div => {
+  div.addEventListener('click', (e) => {
+    let image = e.target.querySelector(".collapse-button");
+    collapseToggle(image);
+  })
+})
+
 const collapseButton = document.querySelectorAll(".collapse-button");
 
 collapseButton.forEach(button => {
   button.addEventListener('click', (e) => {
-    collapseToggle(e);
+    collapseToggle(e.target);
   })
-})
+});
 
-//todo: move collapse to work for the full area of the div
-function collapseToggle(e){
-  const element = document.querySelector(`#${e.target.getAttribute('data-collapse')}`);
+function collapseToggle(image){
+  const element = document.querySelector(`#${image.getAttribute('data-collapse')}`);
+  element.style.transition = "transform 1.5s";
+  element.style.transitionTimingFunction = "ease-in-out";
+  element.style.transformY = "0";
   if(element.style.display === "flex"){
     element.style.display = "none";
-    e.target.src = "./images/chevron_down.png"
+    image.src = "./images/chevron_down.png"
   } else {
-    e.target.src = "./images/chevron_up.png"
+    image.src = "./images/chevron_up.png"
     element.style.display = "flex";
   } 
 }
