@@ -20,19 +20,8 @@ collapseDiv.forEach(div => {
   })
 })
 
-const collapseButton = document.querySelectorAll(".collapse-button");
-
-collapseButton.forEach(button => {
-  button.addEventListener('click', (e) => {
-    collapseToggle(e.target);
-  })
-});
-
 function collapseToggle(image){
   const element = document.querySelector(`#${image.getAttribute('data-collapse')}`);
-  element.style.transition = "transform 1.5s";
-  element.style.transitionTimingFunction = "ease-in-out";
-  element.style.transformY = "0";
   if(element.style.display === "flex"){
     element.style.display = "none";
     image.src = "./images/chevron_down.png"
