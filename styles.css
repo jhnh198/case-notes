@@ -133,7 +133,11 @@ h2{
   }
 }
 
-/* todo: add checkbox transition animation */
+.checkbox-div{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 
 .collapse-div{
   display: flex;
@@ -141,6 +145,37 @@ h2{
   width: 100%;
   justify-content: space-between;
   z-index: 3;
+}
+
+.checkbox-div-collapsed {
+  -webkit-animation: collapse 0.5s;
+  -webkit-animation-fill-mode:both;
+}
+
+@-webkit-keyframes collapse {
+  0% {
+    visibility: hidden; 
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    visibility: visible; 
+    max-height: 100px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes expand{
+  0% {
+    visibility: visible; 
+    max-height: 100px;
+    opacity: 1;
+  }
+  100% {
+    visibility: hidden; 
+    height: 0;
+    opacity: 0;
+  }
 }
 
 .collapse-button{

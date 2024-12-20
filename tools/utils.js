@@ -22,12 +22,12 @@ collapseDiv.forEach(div => {
 
 function collapseToggle(image){
   const element = document.querySelector(`#${image.getAttribute('data-collapse')}`);
-  if(element.style.display === "flex"){
-    element.style.display = "none";
+  if(element.classList.contains("checkbox-div-collapsed")){
+    element.classList.remove("checkbox-div-collapsed");
     image.src = "./images/chevron_down.png"
-  } else {
+  } else{
     image.src = "./images/chevron_up.png"
-    element.style.display = "flex";
+    element.classList.add("checkbox-div-collapsed");
   } 
 }
 
