@@ -24,10 +24,13 @@ function collapseToggle(image){
   const element = document.querySelector(`#${image.getAttribute('data-collapse')}`);
   if(element.classList.contains("checkbox-div-collapsed")){
     element.classList.remove("checkbox-div-collapsed");
+    element.classList.add("checkbox-div-expanded");
     image.src = "./images/chevron_down.png"
   } else{
     image.src = "./images/chevron_up.png"
+    element.classList.remove("checkbox-div-expanded");
     element.classList.add("checkbox-div-collapsed");
+    
   } 
 }
 

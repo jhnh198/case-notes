@@ -149,7 +149,12 @@ h2{
 
 .checkbox-div-collapsed {
   -webkit-animation: collapse 0.5s;
-  -webkit-animation-fill-mode:both;
+  -webkit-animation-fill-mode:forwards;
+}
+
+.checkbox-div-expanded {
+  -webkit-animation: expand 0.5s;
+  -webkit-animation-fill-mode:forwards;
 }
 
 @-webkit-keyframes collapse {
