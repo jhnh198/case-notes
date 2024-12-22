@@ -147,14 +147,24 @@ h2{
   z-index: 3;
 }
 
-.checkbox-div-collapsed {
+/*
   -webkit-animation: collapse 0.5s;
   -webkit-animation-fill-mode:forwards;
+ */
+
+.checkbox-div-collapsed {
+
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .checkbox-div-expanded {
-  -webkit-animation: expand 0.5s;
-  -webkit-animation-fill-mode:forwards;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 @-webkit-keyframes collapse {
@@ -163,9 +173,14 @@ h2{
     height: 0;
     opacity: 0;
   }
+  25% {
+    visibility: visible; 
+    height: 100px;
+    opacity: 0.5;
+  }
   100% {
     visibility: visible; 
-    max-height: 100px;
+    max-height: 600px;
     opacity: 1;
   }
 }

@@ -65,11 +65,11 @@
 
       </div>
 
-      <div id="issue-collapse-div" class="collapse-div" data-collapse="issue-checkboxes">
-        <h2> Issues </h2>
-        <img z-index="1" data-collapse="issue-checkboxes" class="collapse-button" src="./images/chevron_down.png">
-      </div>
-
+      <details>
+        <summary id="template-collapse-div" class="collapse-div" data-collapse="template-checkboxes">
+          <h2> Issues </h2>
+          <img z-index="1" class="collapse-button" data-collapse="template-checkboxes" src="./images/chevron_down.png">
+        </summary>
       <div id="issue-checkboxes" class="checkbox-div checkbox-div-collapsed">
         <div>
           <input type="checkbox" id="display-disconnect" name="display-disconnect" value="Display Disconnected From OBC" data-category="issue">
@@ -184,6 +184,7 @@
           <label for="log-no-time"> Log: No Time </label><br>
         </div>
       </div>
+      </details>
 
       <div id="troubleshooting-collapse-div" class="collapse-div" data-collapse="troubleshooting-checkboxes" >
         <h2> Troubleshooting </h2>
