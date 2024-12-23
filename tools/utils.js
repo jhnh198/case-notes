@@ -11,14 +11,14 @@ function showHideTools(id){
   } 
 }
 
-const collapseDiv = document.querySelectorAll(".collapse-div");
+/* const collapseDiv = document.querySelectorAll(".collapse-div");
 
 collapseDiv.forEach(div => {
   div.addEventListener('click', (e) => {
     let image = e.target.querySelector(".collapse-button");
     collapseToggle(image);
   })
-})
+}) */
 
 function collapseToggle(image){
   const element = document.querySelector(`#${image.getAttribute('data-collapse')}`);
