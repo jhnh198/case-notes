@@ -143,6 +143,8 @@ details{
   display: flex;
   flex-direction: column;
   width: 100%;
+  transition: height 1.5ms;
+  -moz-animation: collapse 0.5s;
 }
 
 .details::details-content {
@@ -151,9 +153,8 @@ details{
   width: 100%;
   justify-content: space-between;
   z-index: 3;
-  transition-property: block-size, content-visibility;
-	transition-duration: 1.5s;
-	transition-behavior: allow-discrete;
+  transition: height 1.5ms;
+  -moz-animation: collapse 0.5s;
 }
 
 .details[open]::details-content {
