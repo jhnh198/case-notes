@@ -11,15 +11,6 @@ function showHideTools(id){
   } 
 }
 
-/* const collapseDiv = document.querySelectorAll(".collapse-div");
-
-collapseDiv.forEach(div => {
-  div.addEventListener('click', (e) => {
-    let image = e.target.querySelector(".collapse-button");
-    collapseToggle(image);
-  })
-}) */
-
 function collapseToggle(image){
   const element = document.querySelector(`#${image.getAttribute('data-collapse')}`);
   if(element.classList.contains("checkbox-div-collapsed")){
@@ -30,7 +21,6 @@ function collapseToggle(image){
     image.src = "./images/chevron_up.png"
     element.classList.remove("checkbox-div-expanded");
     element.classList.add("checkbox-div-collapsed");
-    
   } 
 }
 
