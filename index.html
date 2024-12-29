@@ -6,7 +6,6 @@
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
   <script src="script.js" type="module" defer></script>
   <script src="https://cdn.tiny.cloud/1/2t189cmhjlsxjvpggb4e3vwlpn7ogeao4rv5b2v58fnuxpar/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-
   <script src="./data/InitialCheckboxData.js" type="module" ></script>
   <script src="./tools/utils.js" defer ></script>
   <link rel="stylesheet" href="styles.css">
@@ -27,49 +26,51 @@
     <!-- area for case text field and issue/troubleshooting/recommended next steps -->
     <main class="template-builder-main">
 
-      <div id="info-collapse-div" data-collapse="info-fields-div" class="collapse-div">
-        <h2> Info </h2>
-        <img z-index="1" class="collapse-button" data-collapse="info-fields-div" src="./images/chevron_down.png">
-      </div>
+      <details>
+        <summary id="customer-collapse-div" class="collapse-div" data-collapse="customer-fields-div">
+          <h2> Customer Info </h2>
+        </summary> 
 
-      <div id="info-fields-div" class="info-fields-div">
-        <div>
-          <label for="first-name-input"> First Name: </label>
-          <input class="info-fields-input" type="text" id="first-name-input" name="first-name-input" data-category="info-fields">  
+        <div id="info-fields-div" class="content info-fields-div">
+          <div>
+            <label for="first-name-input"> First Name: </label>
+            <input class="info-fields-input" type="text" id="first-name-input" name="first-name-input" data-category="info-fields">  
+          </div>
+
+          <div>
+            <label for="last-name-input"> Last Name: </label>
+            <input class="info-fields-input"type="text" id="last-name-input" name="last-name-input" data-category="info-fields">
+          </div>
+
+          <div>
+            <label for="company-id-input"> Company ID: </label>
+            <input class="info-fields-input" type="text" id="company-id-input" name="company-id-input" data-category="info-fields">
+          </div>
+
+          <div>
+            <label for="truck-number-input"> Truck Number: </label>
+            <input class="info-fields-input" type="text" id="truck-number-input" name="truck-number-input" data-category="info-fields">  
+          </div>
+
+          <div>
+            <label for="phone-number-input"> Phone Number: </label>
+            <input class="info-fields-input" type="text" id="phone-number-input" name="phone-number-input" data-category="info-fields">
+          </div>
+
+          <div>
+            <label for="email-input"> E-mail: </label>
+            <input class="info-fields-input" type="text" id="email-input" name="email-input" data-category="info-fields">
+          </div>
+
         </div>
 
-        <div>
-          <label for="last-name-input"> Last Name: </label>
-          <input class="info-fields-input"type="text" id="last-name-input" name="last-name-input" data-category="info-fields">
-        </div>
-
-        <div>
-          <label for="company-id-input"> Company ID: </label>
-          <input class="info-fields-input" type="text" id="company-id-input" name="company-id-input" data-category="info-fields">
-        </div>
-
-        <div>
-          <label for="truck-number-input"> Truck Number: </label>
-          <input class="info-fields-input" type="text" id="truck-number-input" name="truck-number-input" data-category="info-fields">  
-        </div>
-
-        <div>
-          <label for="phone-number-input"> Phone Number: </label>
-          <input class="info-fields-input" type="text" id="phone-number-input" name="phone-number-input" data-category="info-fields">
-        </div>
-
-        <div>
-          <label for="email-input"> E-mail: </label>
-          <input class="info-fields-input" type="text" id="email-input" name="email-input" data-category="info-fields">
-        </div>
-
-      </div>
+      </details>
 
       <details>
         <summary id="template-collapse-div" class="collapse-div" data-collapse="template-checkboxes">
           <h2> Issues </h2>
         </summary>
-        <div class="content"> 
+        <div class="content checkbox-div" id="template-checkboxes"> 
         <div>
           <input type="checkbox" id="display-disconnect" name="display-disconnect" value="Display Disconnected From OBC" data-category="issue">
           <label for="display-disconnect"> Display disconnect </label><br>
@@ -185,12 +186,12 @@
         </div>
       </details>
 
-      <div id="troubleshooting-collapse-div" class="collapse-div" data-collapse="troubleshooting-checkboxes" >
-        <h2> Troubleshooting </h2>
-        <img z-index="1" class="collapse-button" data-collapse="troubleshooting-checkboxes" src="./images/chevron_down.png">
-      </div>
+      <details>
+        <summary id="troubleshooting-collapse-div" class="collapse-div" data-collapse="troubleshooting-checkboxes">
+          <h2> Troubleshooting </h2>
+        </summary>
 
-      <div id="troubleshooting-checkboxes" class="checkbox-div">
+      <div id="troubleshooting-checkboxes" class="content checkbox-div">
         <div>
           <input type="checkbox" id="reboot-display" name="reboot-display" value="Rebooted display" data-category="troubleshooting">
           <label for="reboot-display"> Reboot Display </label><br>
@@ -304,38 +305,40 @@
           <label for="">  </label><br>
         </div>
       </div>
+      </details>
 
-      <div id="recommended-collapse-div" class="collapse-div" data-collapse="recommended-checkboxes">
-        <h2>Recommended Next Steps </h2>
-        <img z-index="1" class="collapse-button" data-collapse="recommended-checkboxes" src="./images/chevron_down.png">
-      </div>
+      <details>
+        <summary id="recommended-collapse-div" class="collapse-div" data-collapse="recommended-checkboxes">
+          <h2> Additional Troubleshooting </h2>
+        </summary>
 
-      <div id="recommended-checkboxes" class="checkbox-div">   
-        <div>
-          <input type="checkbox" id="recommend-pull-power" name="recommend-pull-power" value="Pull Power to OBC" data-category="recommended">
-          <label for="recommend-pull-power"> Pull power to OBC </label><br>
+        <div id="recommended-checkboxes" class="content checkbox-div">   
+          <div>
+            <input type="checkbox" id="recommend-pull-power" name="recommend-pull-power" value="Pull Power to OBC" data-category="recommended">
+            <label for="recommend-pull-power"> Pull power to OBC </label><br>
+          </div>
+          <div>
+            <input type="checkbox" id="check-cabling" name="check-cabling" value="Check wiring to OBC for proper voltage and ground. Ensure cabling is not damaged or loose." data-category="recommended">
+            <label for="check-cabling"> Check cabling </label><br>
+          </div>
+          <div>
+            <input type="checkbox" id="contact-company-log-edit" name="contact-company-log-edit" value="Contact Company Safety or DOT for log edits or unsure about log times and HOS regulations." data-category="recommended">
+            <label for="contact-company-log-edit"> Contact Company: Log Edit </label><br>
+          </div>
+          <div>
+            <input type="checkbox" id="swap-obc" name="swap-obc" value="Swap OBC with known working OBC" data-category="recommended">
+            <label for="swap-obc"> Swap OBC </label><br>
+          </div>
+          <div>
+            <input type="checkbox" id="swap-display" name="swap-display" value="Swap display with known working display" data-category="recommended">
+            <label for="swap-display"> Swap Display </label><br>
+          </div>
+          <div>
+            <input type="checkbox" id="reset-password" name="reset-password" value="Contact company for password reset" data-category="recommended">
+            <label for="reset-password"> Password Reset </label><br>
+          </div>     
         </div>
-        <div>
-          <input type="checkbox" id="check-cabling" name="check-cabling" value="Check wiring to OBC for proper voltage and ground. Ensure cabling is not damaged or loose." data-category="recommended">
-          <label for="check-cabling"> Check cabling </label><br>
-        </div>
-        <div>
-          <input type="checkbox" id="contact-company-log-edit" name="contact-company-log-edit" value="Contact Company Safety or DOT for log edits or unsure about log times and HOS regulations." data-category="recommended">
-          <label for="contact-company-log-edit"> Contact Company: Log Edit </label><br>
-        </div>
-        <div>
-          <input type="checkbox" id="swap-obc" name="swap-obc" value="Swap OBC with known working OBC" data-category="recommended">
-          <label for="swap-obc"> Swap OBC </label><br>
-        </div>
-        <div>
-          <input type="checkbox" id="swap-display" name="swap-display" value="Swap display with known working display" data-category="recommended">
-          <label for="swap-display"> Swap Display </label><br>
-        </div>
-        <div>
-          <input type="checkbox" id="reset-password" name="reset-password" value="Contact company for password reset" data-category="recommended">
-          <label for="reset-password"> Password Reset </label><br>
-        </div>     
-      </div>
+      </details>
     </main>
 
   <section class="text-field-section">

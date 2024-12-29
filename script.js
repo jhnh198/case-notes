@@ -1,4 +1,5 @@
 import { TinyMceTemplates } from "./tinymce-templates/tinymce-templates.js";
+import { Accordion } from "./tools/Accordion.js";
 
 tinymce.init({
   selector: '#additional-notes-text-field',
@@ -13,6 +14,10 @@ tinymce.init({
   menubar: false,
   readonly: true,
   plugins: 'lists',
+});
+
+document.querySelectorAll('details').forEach((el) => {
+  new Accordion(el);
 });
 
 const checkboxes = document.querySelectorAll('input[type=checkbox]');

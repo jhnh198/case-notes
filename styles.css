@@ -39,13 +39,14 @@ nav{
 
 .template-builder-main{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   max-width: 600px;
+  min-width: 600px;
 }
 
 .info-fields-div{
-  display: none;
+  display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   align-content: stretch;
@@ -65,13 +66,6 @@ nav{
 
 .info-fields-div > div > label{
   padding-bottom: 1rem;
-}
-
-.checkbox-div{
-  display: none;
-  flex-direction: row;
-  flex-wrap: wrap;
-  max-width: 600px;
 }
 
 input[type='checkbox']{
@@ -128,6 +122,14 @@ h2{
     max-height: 100px;
     opacity: 1;
   }
+}
+
+/* todo: remove, duplicate of other style*/
+.checkbox-div{
+  display: none;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 600px;
 }
 
 /* todo: remove after implementing the collapse/expand functionality */
