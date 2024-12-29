@@ -101,52 +101,11 @@ h2{
   margin-bottom: 1rem;
 }
 
-/* add animation on collapse */
-@keyframes collapse {
-  0% {
-    max-height: 100px;
-    opacity: 1;
-  }
-  100% {
-    max-height: 0;
-    opacity: 0;
-  }
-}
-
-@keyframes expand {
-  0% {
-    max-height: 0;
-    opacity: 0;
-  }
-  100% {
-    max-height: 100px;
-    opacity: 1;
-  }
-}
-
-/* todo: remove, duplicate of other style*/
-.checkbox-div{
-  display: none;
-  flex-direction: row;
-  flex-wrap: wrap;
-  max-width: 600px;
-}
-
 /* todo: remove after implementing the collapse/expand functionality */
 .checkbox-div{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  transition: all 0.5s ease-in-out;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-}
-
-/*todo: remove after implementing the collapse/expand functionality*/
-.collapse-button{
-  height: 16px;
-  margin-top: .4rem;
-  width: auto;
 }
 
 .tools{
