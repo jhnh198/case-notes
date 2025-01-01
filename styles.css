@@ -136,6 +136,17 @@ details > ul {
   100% {background-color: #2a2c2c;}
 }
 
+.clear-notes-button{
+  background: #002d5b;
+  border-radius: 3px;
+  border: none;
+  box-shadow: #002d5b 1px 1px 1px;
+  padding: 1rem;
+  color: white;
+  font-size: 20px;
+  margin: 2rem;
+}
+
 h2{
   margin-bottom: 1rem;
 }
@@ -155,12 +166,15 @@ h2{
   display: none;
 }
 
-.tools > *{
-  margin-bottom: 1rem;
-}
-
 .template-dropdown-label{
   margin-left: 1rem;
+}
+
+.template-dropdown{
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1rem;
+  font-size: 20px;
 }
 
 #text-field-controls{
@@ -196,7 +210,28 @@ h2{
 }
 
 .text-field-section{
-  width: 750px;
+  width: 800px;
+}
+
+.comma-insertion-header{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.comma-insertion-text-area{
+  width: 800px;
+  border-radius: 3px;
+}
+
+.comma-insertion-button{
+  background: #002d5b;
+  border-radius: 3px;
+  border: none;
+  box-shadow: #002d5b 1px 1px 1px;
+  padding: 1rem;
+  color: white;
+  font-size: 20px;
+  margin: 2rem;
 }
 
 .show {

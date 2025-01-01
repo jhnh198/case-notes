@@ -27,7 +27,7 @@
     <main class="template-builder-main">
 
       <details>
-        <summary id="customer-collapse-div" class="collapse-div" data-collapse="customer-fields-div">
+        <summary id="customer-collapse-div" class="collapse-div">
           <h2> Customer Info </h2>
         </summary> 
 
@@ -67,8 +67,8 @@
       </details>
 
       <details>
-        <summary id="template-collapse-div" class="collapse-div" data-collapse="template-checkboxes">
-          <h2> Issues </h2>
+        <summary id="template-collapse-div" class="collapse-div">
+          <h2 data-category="issue-header"> Issue </h2>
         </summary>
         <div class="content checkbox-div" id="template-checkboxes"> 
         <div>
@@ -187,8 +187,8 @@
       </details>
 
       <details>
-        <summary id="troubleshooting-collapse-div" class="collapse-div" data-collapse="troubleshooting-checkboxes">
-          <h2> Troubleshooting </h2>
+        <summary id="troubleshooting-collapse-div" class="collapse-div">
+          <h2 data-category="troubleshooting-header"> Troubleshooting </h2>
         </summary>
 
       <div id="troubleshooting-checkboxes" class="content checkbox-div">
@@ -308,8 +308,8 @@
       </details>
 
       <details>
-        <summary id="recommended-collapse-div" class="collapse-div" data-collapse="recommended-checkboxes">
-          <h2> Additional Troubleshooting </h2>
+        <summary id="recommended-collapse-div" class="collapse-div">
+          <h2 data-category="recommended-header"> Recommended Next Steps </h2>
         </summary>
 
         <div id="recommended-checkboxes" class="content checkbox-div">   
@@ -350,7 +350,7 @@
 
       <div>
         <label class="template-dropdown-label" for="template-dropdown">Templates: </label>
-        <select name="template-dropdown" id="template-dropdown">
+        <select name="template-dropdown" id="template-dropdown" class="template-dropdown">
           <option disabled></option>
           <option disabled>-- Login Issues --</option>
           <option value="unable-to-reach-host-template">Unable to Reach Host</option>
@@ -393,6 +393,8 @@
           <option value="smd-trips-present-template">SMD Trips Still Present</option>
         </select>
       </div>
+
+      <button id="clear-notes-button" class="clear-notes-button"> Clear Notes </button>
     </div>
       <h2 class="case-notes-header"> Case Notes </h2>
       <textarea contenteditable="true" maxlength="2000" rows="15" cols="80" id="case-notes-div"></textarea>
@@ -404,13 +406,13 @@
 
   <!-- add a copy button for this -->
   <section class="tools">
-      <h2> Comma Insertion </h2>
+      <h2 class="comma-insertion-header"> Comma Insertion </h2>
       <label for="comma-insertion-input-text"> Enter DSN's </label><br>
-      <textarea id="comma-insertion-input-text" rows="15" cols="60" name="comma-insertion-input-text" class="comma-insertion-input-text"></textarea><br>
+      <textarea class='comma-insertion-text-area' id="comma-insertion-input-text" rows="15" cols="60" name="comma-insertion-input-text" class="comma-insertion-input-text"></textarea><br>
       
-      <button id="comma-insertion-button"> Insert Commas and Filter DSN </button><br>
+      <button class="comma-insertion-button" id="comma-insertion-button"> Insert Commas and Filter DSN </button><br>
 
-      <textarea id="comma-insertion-output-area" rows="15" cols="80" class="comma-insertion-output-area"></textarea>
+      <textarea class='comma-insertion-text-area' id="comma-insertion-output-area" rows="15" cols="60" class="comma-insertion-output-area"></textarea>
   </section>
 </body>
 </html>

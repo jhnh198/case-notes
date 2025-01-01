@@ -24,7 +24,6 @@ const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const copyButton = document.querySelector('#copy-icon');
 const copyNotification = document.querySelector('#content-copied-notification');
 const templateDropdown = document.querySelector('#template-dropdown');
-//const caseNotesDiv = document.querySelector('#case-notes-div');
 let useTemplate = false;
 
 //get user info
@@ -145,4 +144,16 @@ function populateCaseNotes(isTemplate){
 
   //set content allows html to be added to case notes
   tinymce.get("case-notes-div").setContent(contentElement.innerHTML + additionalNotesHtml);
+
+  
 };
+
+let clearNotesButton = document.querySelector("#clear-notes-button");
+clearNotesButton.addEventListener("click", () => {
+  tinymce.get("case-notes-div").setContent("");
+  checkboxes.forEach(checkbox => {
+    checkbox.checked = false;
+  });
+  templateDropdown.selectedIndex = 0;
+  useTemplate = false;
+});
